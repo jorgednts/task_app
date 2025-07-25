@@ -1,7 +1,7 @@
 name: movie_review_app
 
 packages:
-  - easy_task
+  - easy_task_app
   - core
   - design_system
   - internationalization
@@ -58,3 +58,6 @@ scripts:
     exec: flutter pub run build_runner watch --delete-conflicting-outputs
     packageFilters:
       dependsOn: build_runner
+
+  run:
+    exec: flutter run
