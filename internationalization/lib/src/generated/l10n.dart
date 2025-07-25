@@ -54,14 +54,9 @@ class AppIntl {
     return Localizations.of<AppIntl>(context, AppIntl);
   }
 
-  /// `EasyTask (PT_BR)`
+  /// `EasyTask`
   String get app_name {
-    return Intl.message(
-      'EasyTask (PT_BR)',
-      name: 'app_name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('EasyTask', name: 'app_name', desc: '', args: []);
   }
 }
 
