@@ -23,5 +23,69 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "app_name": MessageLookupByLibrary.simpleMessage("EasyTask"),
+    "auth_email": MessageLookupByLibrary.simpleMessage("e-mail"),
+    "auth_error_email_address_invalid": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email address.",
+    ),
+    "auth_error_email_exists": MessageLookupByLibrary.simpleMessage(
+      "An account with this email already exists. Try signing in instead.",
+    ),
+    "auth_error_email_not_confirmed": MessageLookupByLibrary.simpleMessage(
+      "Please check your email and confirm your account before signing in.",
+    ),
+    "auth_error_generic": MessageLookupByLibrary.simpleMessage(
+      "Please try again.",
+    ),
+    "auth_error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
+      "Invalid email or password. Please check your credentials and try again.",
+    ),
+    "auth_error_network": MessageLookupByLibrary.simpleMessage(
+      "Check your internet connection and try again.",
+    ),
+    "auth_error_weak_password": MessageLookupByLibrary.simpleMessage(
+      "Please choose a stronger password.",
+    ),
+    "auth_name": MessageLookupByLibrary.simpleMessage("name"),
+    "auth_password": MessageLookupByLibrary.simpleMessage("password"),
+    "auth_sign_in_label": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "auth_sign_in_message": MessageLookupByLibrary.simpleMessage(
+      "Enter with your account!",
+    ),
+    "auth_sign_up_label": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "auth_sign_up_message": MessageLookupByLibrary.simpleMessage(
+      "New here? Create an account!",
+    ),
+    "auth_validator_email_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Email is required",
+    ),
+    "auth_validator_email_invalid_error": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email address",
+    ),
+    "auth_validator_name_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Name is required",
+    ),
+    "auth_validator_name_invalid_error": MessageLookupByLibrary.simpleMessage(
+      "Name can only contain letters, spaces, hyphens, and apostrophes",
+    ),
+    "auth_validator_name_too_short_error": MessageLookupByLibrary.simpleMessage(
+      "Name must be at least 2 characters long",
+    ),
+    "auth_validator_password_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Password is required",
+    ),
+    "auth_validator_password_too_short_error":
+        MessageLookupByLibrary.simpleMessage(
+          "Password must be at least 6 characters long",
+        ),
+    "auth_validator_sign_in_message": MessageLookupByLibrary.simpleMessage(
+      "Enter with your account!",
+    ),
+    "auth_welcome_message": MessageLookupByLibrary.simpleMessage(
+      "Your task management app",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Welcome to EasyTask!",
+    ),
+    "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
   };
 }

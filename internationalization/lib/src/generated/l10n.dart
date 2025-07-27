@@ -58,6 +58,241 @@ class AppIntl {
   String get app_name {
     return Intl.message('EasyTask', name: 'app_name', desc: '', args: []);
   }
+
+  /// `Oops! :(`
+  String get common_error_title {
+    return Intl.message(
+      'Oops! :(',
+      name: 'common_error_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get auth_sign_up_label {
+    return Intl.message(
+      'Sign Up',
+      name: 'auth_sign_up_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get auth_sign_in_label {
+    return Intl.message(
+      'Sign In',
+      name: 'auth_sign_in_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `name`
+  String get auth_name {
+    return Intl.message('name', name: 'auth_name', desc: '', args: []);
+  }
+
+  /// `e-mail`
+  String get auth_email {
+    return Intl.message('e-mail', name: 'auth_email', desc: '', args: []);
+  }
+
+  /// `password`
+  String get auth_password {
+    return Intl.message('password', name: 'auth_password', desc: '', args: []);
+  }
+
+  /// `Welcome to EasyTask!`
+  String get auth_welcome_title {
+    return Intl.message(
+      'Welcome to EasyTask!',
+      name: 'auth_welcome_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your task management app`
+  String get auth_welcome_message {
+    return Intl.message(
+      'Your task management app',
+      name: 'auth_welcome_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New here? Create an account!`
+  String get auth_sign_up_message {
+    return Intl.message(
+      'New here? Create an account!',
+      name: 'auth_sign_up_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter with your account!`
+  String get auth_sign_in_message {
+    return Intl.message(
+      'Enter with your account!',
+      name: 'auth_sign_in_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter with your account!`
+  String get auth_validator_sign_in_message {
+    return Intl.message(
+      'Enter with your account!',
+      name: 'auth_validator_sign_in_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is required`
+  String get auth_validator_email_empty_error {
+    return Intl.message(
+      'Email is required',
+      name: 'auth_validator_email_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address`
+  String get auth_validator_email_invalid_error {
+    return Intl.message(
+      'Please enter a valid email address',
+      name: 'auth_validator_email_invalid_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required`
+  String get auth_validator_password_empty_error {
+    return Intl.message(
+      'Password is required',
+      name: 'auth_validator_password_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters long`
+  String get auth_validator_password_too_short_error {
+    return Intl.message(
+      'Password must be at least 6 characters long',
+      name: 'auth_validator_password_too_short_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required`
+  String get auth_validator_name_empty_error {
+    return Intl.message(
+      'Name is required',
+      name: 'auth_validator_name_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name must be at least 2 characters long`
+  String get auth_validator_name_too_short_error {
+    return Intl.message(
+      'Name must be at least 2 characters long',
+      name: 'auth_validator_name_too_short_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name can only contain letters, spaces, hyphens, and apostrophes`
+  String get auth_validator_name_invalid_error {
+    return Intl.message(
+      'Name can only contain letters, spaces, hyphens, and apostrophes',
+      name: 'auth_validator_name_invalid_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your internet connection and try again.`
+  String get auth_error_network {
+    return Intl.message(
+      'Check your internet connection and try again.',
+      name: 'auth_error_network',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please try again.`
+  String get auth_error_generic {
+    return Intl.message(
+      'Please try again.',
+      name: 'auth_error_generic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your email and confirm your account before signing in.`
+  String get auth_error_email_not_confirmed {
+    return Intl.message(
+      'Please check your email and confirm your account before signing in.',
+      name: 'auth_error_email_not_confirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address.`
+  String get auth_error_email_address_invalid {
+    return Intl.message(
+      'Please enter a valid email address.',
+      name: 'auth_error_email_address_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An account with this email already exists. Try signing in instead.`
+  String get auth_error_email_exists {
+    return Intl.message(
+      'An account with this email already exists. Try signing in instead.',
+      name: 'auth_error_email_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose a stronger password.`
+  String get auth_error_weak_password {
+    return Intl.message(
+      'Please choose a stronger password.',
+      name: 'auth_error_weak_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email or password. Please check your credentials and try again.`
+  String get auth_error_invalid_credentials {
+    return Intl.message(
+      'Invalid email or password. Please check your credentials and try again.',
+      name: 'auth_error_invalid_credentials',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppIntl> {
@@ -65,8 +300,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppIntl> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
     ];
   }
 

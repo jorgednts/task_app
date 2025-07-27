@@ -1,11 +1,12 @@
-import 'package:design_system/src/tokens/typography/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../tokens/typography/fonts.dart';
+
 TextTheme createTextTheme({
   required BuildContext context,
-  String bodyFontString = Fonts.openSans,
-  String displayFontString = Fonts.robotoCondensed,
+  String bodyFontString = Fonts.workSans,
+  String displayFontString = Fonts.tinos,
 }) {
   final baseTextTheme = Theme.of(context).textTheme;
   final bodyTextTheme = GoogleFonts.getTextTheme(

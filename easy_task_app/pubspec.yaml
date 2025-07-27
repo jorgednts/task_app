@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  # Internal
   core:
     path: ../core
 
@@ -19,7 +19,14 @@ dependencies:
 
   internationalization:
     path: ../internationalization
+
+  # External
+  equatable: ^2.0.7
   flutter_bloc: ^9.1.1
+  supabase_flutter: ^2.9.1
+  shared_preferences: ^2.5.3
+  get_it: ^8.0.3
+  go_router: ^16.0.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +36,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/svg/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
