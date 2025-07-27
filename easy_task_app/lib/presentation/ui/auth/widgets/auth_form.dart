@@ -43,7 +43,10 @@ class _AuthFormState extends State<AuthForm> {
     final strings = AppIntl.of(context);
     return Center(
       child: SingleChildScrollView(
-        child: Padding(
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: WidthResponsiveBreakpoints.small,
+          ),
           padding: const EdgeInsets.all(Spacing.medium),
           child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
@@ -58,6 +61,7 @@ class _AuthFormState extends State<AuthForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: (state is AuthLoading)
                     ? [
+                        StyledText.l3(strings.auth_verifying_user_message),
                         const Center(
                           child: CircularProgressIndicator(),
                         ),
@@ -74,6 +78,7 @@ class _AuthFormState extends State<AuthForm> {
                                 CustomTextFormField(
                                   controller: nameController,
                                   label: strings.auth_name,
+                                  maxLines: 1,
                                   validator: FormFieldValidators.name(
                                     emptyMessage:
                                         strings.auth_validator_name_empty_error,
@@ -87,6 +92,7 @@ class _AuthFormState extends State<AuthForm> {
                               CustomTextFormField(
                                 controller: emailController,
                                 label: strings.auth_email,
+                                maxLines: 1,
                                 validator: FormFieldValidators.email(
                                   invalidMessage: strings
                                       .auth_validator_email_invalid_error,

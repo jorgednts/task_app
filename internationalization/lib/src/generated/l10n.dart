@@ -124,6 +124,16 @@ class AppIntl {
     );
   }
 
+  /// `Verifying user...`
+  String get auth_verifying_user_message {
+    return Intl.message(
+      'Verifying user...',
+      name: 'auth_verifying_user_message',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New here? Create an account!`
   String get auth_sign_up_message {
     return Intl.message(

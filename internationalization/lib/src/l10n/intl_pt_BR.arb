@@ -9,6 +9,7 @@
   "auth_password": "senha",
   "auth_welcome_title": "Bem vindo ao EasyTask!",
   "auth_welcome_message": "Seu aplicativo de gerenciamento de tarefas",
+  "auth_verifying_user_message": "Verificando usuário...",
   "auth_sign_up_message": "Novo aqui? Crie uma conta!",
   "auth_sign_in_message": "Entre com sua conta!",
   "auth_validator_email_empty_error": "E-mail é obrigatório",

@@ -6,7 +6,7 @@ import '../tokens/typography/fonts.dart';
 TextTheme createTextTheme({
   required BuildContext context,
   String bodyFontString = Fonts.workSans,
-  String displayFontString = Fonts.tinos,
+  String displayFontString = Fonts.merriweather,
 }) {
   final baseTextTheme = Theme.of(context).textTheme;
   final bodyTextTheme = GoogleFonts.getTextTheme(

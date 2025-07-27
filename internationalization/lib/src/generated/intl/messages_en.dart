@@ -80,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_validator_sign_in_message": MessageLookupByLibrary.simpleMessage(
       "Enter with your account!",
     ),
+    "auth_verifying_user_message": MessageLookupByLibrary.simpleMessage(
+      "Verifying user...",
+    ),
     "auth_welcome_message": MessageLookupByLibrary.simpleMessage(
       "Your task management app",
     ),

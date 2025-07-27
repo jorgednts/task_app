@@ -45,12 +45,13 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = Theme.of(context).colorScheme.surfaceContainerHigh;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarIconBrightness: Theme.of(context).brightness,
-          statusBarColor: Theme.of(context).colorScheme.primary,
+          statusBarColor: backgroundColor,
         ),
       ),
       body: SafeArea(
@@ -84,12 +85,15 @@ class AuthPage extends StatelessWidget {
             }
           },
           child: BreakpointDoubleSplitView(
+            firstChildDecoration: BoxDecoration(
+              color: backgroundColor,
+            ),
             firstChild: Padding(
-              padding: const EdgeInsets.all(Spacing.medium),
+              padding: const EdgeInsets.all(Spacing.large),
               child: CustomSvgImage(
                 assetName: SvgConstants.expandedLogo,
                 colorFilter: ColorFilter.mode(
-                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).colorScheme.primary,
                   BlendMode.srcIn,
                 ),
               ),

@@ -77,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "A senha deve ter pelo menos 6 caracteres",
         ),
+    "auth_verifying_user_message": MessageLookupByLibrary.simpleMessage(
+      "Verificando usuário...",
+    ),
     "auth_welcome_message": MessageLookupByLibrary.simpleMessage(
       "Seu aplicativo de gerenciamento de tarefas",
     ),
