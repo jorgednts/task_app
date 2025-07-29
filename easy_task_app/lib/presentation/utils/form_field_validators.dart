@@ -1,4 +1,16 @@
 abstract class FormFieldValidators {
+  static String? Function(String?) generic({
+    required String emptyMessage,
+  }) {
+    return (String? value) {
+      if (value == null || value.trim().isEmpty) {
+        return emptyMessage;
+      }
+
+      return null;
+    };
+  }
+
   static String? Function(String?) email({
     required String emptyMessage,
     required String invalidMessage,

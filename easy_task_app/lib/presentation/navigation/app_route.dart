@@ -1,50 +1,61 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../domain/model/user/easy_task_user_model.dart';
 import '../bloc/auth/auth_bloc.dart';
+import '../bloc/tasks/tasks_bloc.dart';
 import '../ui/auth/auth_page.dart';
 import '../ui/tasks/tasks_page.dart';
 
-sealed class AppRoute<BlocType extends Bloc> {
+sealed class AppRoute {
   const AppRoute({
     required this.path,
     required this.name,
-    required this.child,
-    this.routes = const [],
   });
 
-  GoRoute get goRoute => GoRoute(
-    path: path,
-    name: name,
-    builder: (context, state) => BlocProvider<BlocType>(
-      create: (context) => GetIt.instance.get<BlocType>(),
-      child: child,
-    ),
-    routes: [],
-  );
+  RouteBase get goRoute;
 
   final String path;
   final String name;
-  final Widget child;
-  final List<GoRoute> routes;
 }
 
-final class AuthRoute extends AppRoute<AuthBloc> {
-  AuthRoute()
+final class AuthRoute extends AppRoute {
+  const AuthRoute()
     : super(
         path: '/',
         name: 'auth',
-        child: const AuthPage(),
       );
+
+  @override
+  RouteBase get goRoute => GoRoute(
+    path: path,
+    name: name,
+    builder: (_, state) => BlocProvider<AuthBloc>(
+      create: (context) => GetIt.instance.get<AuthBloc>(),
+      child: const AuthPage(),
+    ),
+    routes: [],
+  );
 }
 
-final class TasksRoute extends AppRoute<AuthBloc> {
-  TasksRoute()
+final class TasksRoute extends AppRoute {
+  const TasksRoute()
     : super(
         path: '/tasks',
         name: 'tasks',
-        child: const TasksPage(),
       );
+
+  @override
+  RouteBase get goRoute => GoRoute(
+    path: path,
+    name: name,
+    builder: (context, state) => BlocProvider<TasksBloc>(
+      create: (_) => GetIt.instance.get<TasksBloc>(),
+      child: TasksPage(
+        user: EasyTaskUserModel.fromQuery(state.uri.queryParameters),
+      ),
+    ),
+    routes: [],
+  );
 }

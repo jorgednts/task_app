@@ -10,7 +10,7 @@ abstract class EasyTaskRouter {
     routes: routes.map((route) => route.goRoute).toList(),
   );
 
-  static final routes = [
+  static const routes = <AppRoute>[
     AuthRoute(),
     TasksRoute(),
   ];

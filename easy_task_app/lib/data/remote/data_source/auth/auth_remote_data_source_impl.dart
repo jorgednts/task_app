@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../model/easy_task_user_response.dart';
-import '../../model/register_user_params.dart';
-import '../../model/sign_in_params.dart';
+import '../../model/user/easy_task_user_response.dart';
+import '../../model/user/register_user_params.dart';
+import '../../model/user/sign_in_params.dart';
 import 'auth_remote_data_source.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {

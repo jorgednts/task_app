@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/remote/model/register_user_params.dart';
-import '../../../data/remote/model/sign_in_params.dart';
+import '../../../data/remote/model/user/register_user_params.dart';
+import '../../../data/remote/model/user/sign_in_params.dart';
 import '../../../domain/use_case/auth/get_current_user_use_case.dart';
 import '../../../domain/use_case/auth/register_user_use_case.dart';
 import '../../../domain/use_case/auth/sign_in_use_case.dart';
@@ -20,23 +20,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        _signInUseCase = signInUseCase,
        _getCurrentUserUseCase = getCurrentUserUseCase,
        super(const AuthInitial(formType: AuthFormType.signIn)) {
-    onInit();
+    _onInit();
   }
 
   final RegisterUserUseCase _registerUserUseCase;
   final SignInUseCase _signInUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
 
-  void onInit() {
+  void _onInit() {
     on<SignUp>(_onSignUp);
     on<SignIn>(_onSignIn);
     on<ToggleFormType>(_onToggleFormType);
-    on<GetCurrentUser>(_onGetCurrentUser);
-    add(const GetCurrentUser());
+    on<AuthGetCurrentUser>(_onGetCurrentUser);
   }
 
   Future<void> _onGetCurrentUser(
-    GetCurrentUser event,
+    AuthGetCurrentUser event,
     Emitter<AuthState> emit,
   ) async {
     emit(AuthLoading(formType: state.formType));
@@ -86,21 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
       onError: (error) {
-        switch (error) {
-          case NullUserException():
-          case GenericException():
-          case CacheException():
-            emit(AuthGenericError(formType: state.formType));
-          case NetworkException():
-            emit(AuthNetworkError(formType: state.formType));
-          case CustomAuthException():
-            emit(
-              AuthApiError(
-                formType: state.formType,
-                errorCode: error.code,
-              ),
-            );
-        }
+        emit(_getAuthState(error));
       },
     );
   }
@@ -122,22 +107,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
       onError: (error) {
-        switch (error) {
-          case NullUserException():
-          case GenericException():
-          case CacheException():
-            emit(AuthGenericError(formType: state.formType));
-          case NetworkException():
-            emit(AuthNetworkError(formType: state.formType));
-          case CustomAuthException():
-            emit(
-              AuthApiError(
-                formType: state.formType,
-                errorCode: error.code,
-              ),
-            );
-        }
+        emit(_getAuthState(error));
       },
     );
+  }
+
+  AuthState _getAuthState(CustomException exception) {
+    switch (exception) {
+      case NullUserException():
+      case GenericException():
+      case CacheException():
+        return AuthGenericError(formType: state.formType);
+      case NetworkException():
+        return AuthNetworkError(formType: state.formType);
+      case CustomAuthException():
+        return AuthApiError(
+          formType: state.formType,
+          errorCode: exception.code,
+        );
+    }
   }
 }

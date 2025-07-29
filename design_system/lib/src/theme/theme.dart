@@ -1,14 +1,16 @@
-import 'package:design_system/src/theme/util.dart';
+import 'package:design_system/src/theme/text_theme_util.dart';
 import 'package:flutter/material.dart';
 
-class CustomTheme {
+import 'extension_color.dart';
 
+class CustomTheme {
   const CustomTheme(this.textTheme);
 
   factory CustomTheme.fromContext(BuildContext context) {
-    final textTheme = createTextTheme(context: context);
+    final textTheme = TextThemeUtil.createTextTheme(context: context);
     return CustomTheme(textTheme);
   }
+
   final TextTheme textTheme;
 
   static ColorScheme lightScheme() {
@@ -131,6 +133,18 @@ class CustomTheme {
     ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
+    extensions: <ThemeExtension<dynamic>>[
+      const CategoryColorsExtension(
+        categoryBlue: categoryBlue,
+        categoryYellow: categoryYellow,
+        categoryRed: categoryRed,
+        categoryOrange: categoryOrange,
+        categoryPurple: categoryPurple,
+        categoryBrown: categoryBrown,
+        categoryGrey: categoryGrey,
+        categoryGreen: categoryGreen,
+      ),
+    ],
   );
 
   /// Category Blue
@@ -482,7 +496,6 @@ class CustomTheme {
 }
 
 class ExtendedColor {
-
   const ExtendedColor({
     required this.seed,
     required this.value,
@@ -493,6 +506,7 @@ class ExtendedColor {
     required this.darkHighContrast,
     required this.darkMediumContrast,
   });
+
   final Color seed, value;
   final ColorFamily light;
   final ColorFamily lightHighContrast;

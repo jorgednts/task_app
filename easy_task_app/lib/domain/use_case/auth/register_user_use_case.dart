@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../../../data/remote/model/register_user_params.dart';
+import '../../../data/remote/model/user/register_user_params.dart';
 import '../../model/user/easy_task_user_model.dart';
 import '../../repository/auth_repository.dart';
 

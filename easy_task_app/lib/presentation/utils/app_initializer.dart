@@ -1,13 +1,13 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../data/data/data_di.dart';
+import '../../data/di/data_di.dart';
 import '../../domain/di/domain_di.dart';
 import '../di/presentation_di.dart';
 
 abstract class AppInitializer {
   static Future<void> execute() async {
     await _initializeSupabase();
-    _initializeDependencies();
+    await _initializeDependencies();
   }
 
   static const supabaseUrl = 'https://nzjojzchnyihkehntoxw.supabase.co';
@@ -25,8 +25,8 @@ abstract class AppInitializer {
     );
   }
 
-  static void _initializeDependencies() {
-    DataDI.getIt();
+  static Future<void> _initializeDependencies() async {
+    await DataDI.getIt();
     DomainDI.getIt();
     PresentationDI.getIt();
   }

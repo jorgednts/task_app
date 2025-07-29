@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internationalization/internationalization.dart';
 
@@ -9,6 +8,8 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/auth/auth_state.dart';
 import '../../constants/image_constants.dart';
 import '../../navigation/app_navigator.dart';
+import '../common/common_app_bar.dart';
+import '../common/theme_mode_builder.dart';
 import 'widgets/auth_form.dart';
 
 class AuthPage extends StatelessWidget {
@@ -46,62 +47,63 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = Theme.of(context).colorScheme.surfaceContainerHigh;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarIconBrightness: Theme.of(context).brightness,
-          statusBarColor: backgroundColor,
-        ),
-      ),
-      body: SafeArea(
-        child: BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            switch (state) {
-              case AuthInitial():
-              case AuthLoading():
-                return;
-              case AuthSuccess():
-                context.navigateToTasksPage();
-                break;
-              case AuthNetworkError():
-                handleError(
-                  context,
-                  AppIntl.of(context).auth_error_network,
-                );
-                break;
-              case AuthGenericError():
-                handleError(
-                  context,
-                  AppIntl.of(context).auth_error_generic,
-                );
-                break;
-              case AuthApiError():
-                handleError(
-                  context,
-                  _getAuthApiErrorMessage(context, state.errorCode),
-                );
-                break;
-            }
-          },
-          child: BreakpointDoubleSplitView(
-            firstChildDecoration: BoxDecoration(
-              color: backgroundColor,
-            ),
-            firstChild: Padding(
-              padding: const EdgeInsets.all(Spacing.large),
-              child: CustomSvgImage(
-                assetName: SvgConstants.expandedLogo,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.primary,
-                  BlendMode.srcIn,
+    return ThemeModeBuilder(
+      builder: (state) {
+        return Scaffold(
+          appBar: CommonAppBar(
+            appThemeMode: state.themeMode,
+            statusBarColor: backgroundColor,
+          ),
+          body: SafeArea(
+            child: BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                switch (state) {
+                  case AuthInitial():
+                  case AuthLoading():
+                    return;
+                  case AuthSuccess():
+                    context.navigateToTasksPage(easyTaskUserModel: state.user);
+                    break;
+                  case AuthNetworkError():
+                    handleError(
+                      context,
+                      AppIntl.of(context).auth_error_network,
+                    );
+                    break;
+                  case AuthGenericError():
+                    handleError(
+                      context,
+                      AppIntl.of(context).auth_error_generic,
+                    );
+                    break;
+                  case AuthApiError():
+                    handleError(
+                      context,
+                      _getAuthApiErrorMessage(context, state.errorCode),
+                    );
+                    break;
+                }
+              },
+              child: BreakpointDoubleSplitView(
+                firstChildDecoration: BoxDecoration(
+                  color: backgroundColor,
                 ),
+                firstChild: Padding(
+                  padding: const EdgeInsets.all(Spacing.large),
+                  child: CustomSvgImage(
+                    assetName: SvgConstants.expandedLogo,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.primary,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+                secondChild: const AuthForm(),
               ),
             ),
-            secondChild: const AuthForm(),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

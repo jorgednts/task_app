@@ -86,6 +86,45 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
       "Bem vindo ao EasyTask!",
     ),
+    "common_error_message": MessageLookupByLibrary.simpleMessage(
+      "Algo deu errado, tente novamente",
+    ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
+    "common_hello": MessageLookupByLibrary.simpleMessage("Olá"),
+    "common_success_message": MessageLookupByLibrary.simpleMessage(
+      "Operação concluída com sucesso",
+    ),
+    "common_success_title": MessageLookupByLibrary.simpleMessage("Sucesso! :)"),
+    "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
+      "+ Adicioanr categoria",
+    ),
+    "tasks_category_label": MessageLookupByLibrary.simpleMessage("Categoria"),
+    "tasks_category_loading_message": MessageLookupByLibrary.simpleMessage(
+      "Carregando categorias...",
+    ),
+    "tasks_create_title": MessageLookupByLibrary.simpleMessage("Criar Tarefa"),
+    "tasks_delete_title": MessageLookupByLibrary.simpleMessage(
+      "Deletar Tarefa",
+    ),
+    "tasks_description_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Descrição é obrigatória",
+    ),
+    "tasks_description_label": MessageLookupByLibrary.simpleMessage(
+      "Descrição",
+    ),
+    "tasks_due_date": MessageLookupByLibrary.simpleMessage(
+      "Data de vencimento",
+    ),
+    "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Editar Tarefa"),
+    "tasks_name_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Nome é obrigatório",
+    ),
+    "tasks_name_label": MessageLookupByLibrary.simpleMessage("Nome"),
+    "tasks_status_done": MessageLookupByLibrary.simpleMessage("Concluído"),
+    "tasks_status_in_progress": MessageLookupByLibrary.simpleMessage(
+      "Em progresso",
+    ),
+    "tasks_status_label": MessageLookupByLibrary.simpleMessage("Status"),
+    "tasks_status_to_do": MessageLookupByLibrary.simpleMessage("A fazer"),
   };
 }

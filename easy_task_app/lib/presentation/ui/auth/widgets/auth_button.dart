@@ -1,7 +1,8 @@
 import 'package:design_system/design_system.dart';
-import '../../../bloc/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:internationalization/internationalization.dart';
+
+import '../../../bloc/auth/auth_state.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
@@ -39,7 +40,7 @@ class AuthButton extends StatelessWidget {
     return Column(
       spacing: Spacing.small,
       children: [
-        FilledButton(
+        CustomFilledButton(
           onPressed: () {
             if (!onValidate()) {
               return;
@@ -53,22 +54,11 @@ class AuthButton extends StatelessWidget {
                 break;
             }
           },
-          child: FittedBox(
-            child: StyledText.b2(
-              filledButtonLabel,
-              fontColor: Theme.of(context).colorScheme.onPrimary,
-              isBold: true,
-            ),
-          ),
+          label: filledButtonLabel,
         ),
-        TextButton(
+        CustomTextButton(
           onPressed: onToggleFormType,
-          child: FittedBox(
-            child: StyledText.l3(
-              textButtonLabel,
-              fontColor: Theme.of(context).colorScheme.onSurface,
-            ),
-          ),
+          label: textButtonLabel,
         ),
       ],
     );

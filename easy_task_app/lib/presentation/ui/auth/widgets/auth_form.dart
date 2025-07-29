@@ -76,6 +76,7 @@ class _AuthFormState extends State<AuthForm> {
                             children: <Widget>[
                               if (state.formType == AuthFormType.signUp) ...[
                                 CustomTextFormField(
+                                  key: const ValueKey('nameField'),
                                   controller: nameController,
                                   label: strings.auth_name,
                                   maxLines: 1,
@@ -90,6 +91,7 @@ class _AuthFormState extends State<AuthForm> {
                                 ),
                               ],
                               CustomTextFormField(
+                                key: const ValueKey('emailField'),
                                 controller: emailController,
                                 label: strings.auth_email,
                                 maxLines: 1,
@@ -101,6 +103,7 @@ class _AuthFormState extends State<AuthForm> {
                                 ),
                               ),
                               CustomTextFormField(
+                                key: const ValueKey('passwordField'),
                                 controller: passwordController,
                                 label: strings.auth_password,
                                 obscureText: true,

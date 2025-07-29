@@ -69,6 +69,41 @@ class AppIntl {
     );
   }
 
+  /// `Something went wrong, please try again`
+  String get common_error_message {
+    return Intl.message(
+      'Something went wrong, please try again',
+      name: 'common_error_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success! :)`
+  String get common_success_title {
+    return Intl.message(
+      'Success! :)',
+      name: 'common_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation completed successfully`
+  String get common_success_message {
+    return Intl.message(
+      'Operation completed successfully',
+      name: 'common_success_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello`
+  String get common_hello {
+    return Intl.message('Hello', name: 'common_hello', desc: '', args: []);
+  }
+
   /// `Sign Up`
   String get auth_sign_up_label {
     return Intl.message(
@@ -302,6 +337,141 @@ class AppIntl {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Create Task`
+  String get tasks_create_title {
+    return Intl.message(
+      'Create Task',
+      name: 'tasks_create_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Task`
+  String get tasks_edit_title {
+    return Intl.message(
+      'Edit Task',
+      name: 'tasks_edit_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Task`
+  String get tasks_delete_title {
+    return Intl.message(
+      'Delete Task',
+      name: 'tasks_delete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get tasks_name_label {
+    return Intl.message('Name', name: 'tasks_name_label', desc: '', args: []);
+  }
+
+  /// `Name is required`
+  String get tasks_name_empty_error {
+    return Intl.message(
+      'Name is required',
+      name: 'tasks_name_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get tasks_description_label {
+    return Intl.message(
+      'Description',
+      name: 'tasks_description_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description is required`
+  String get tasks_description_empty_error {
+    return Intl.message(
+      'Description is required',
+      name: 'tasks_description_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get tasks_category_label {
+    return Intl.message(
+      'Category',
+      name: 'tasks_category_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading categories...`
+  String get tasks_category_loading_message {
+    return Intl.message(
+      'Loading categories...',
+      name: 'tasks_category_loading_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+ Add category`
+  String get tasks_category_add_message {
+    return Intl.message(
+      '+ Add category',
+      name: 'tasks_category_add_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status`
+  String get tasks_status_label {
+    return Intl.message(
+      'Status',
+      name: 'tasks_status_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due date`
+  String get tasks_due_date {
+    return Intl.message('Due date', name: 'tasks_due_date', desc: '', args: []);
+  }
+
+  /// `To do`
+  String get tasks_status_to_do {
+    return Intl.message(
+      'To do',
+      name: 'tasks_status_to_do',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In progress`
+  String get tasks_status_in_progress {
+    return Intl.message(
+      'In progress',
+      name: 'tasks_status_in_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get tasks_status_done {
+    return Intl.message('Done', name: 'tasks_status_done', desc: '', args: []);
   }
 }
 

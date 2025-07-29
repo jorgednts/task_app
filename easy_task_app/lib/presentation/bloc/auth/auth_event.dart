@@ -28,6 +28,6 @@ class SignUp extends AuthEvent {
   final String name;
 }
 
-class GetCurrentUser extends AuthEvent {
-  const GetCurrentUser();
+class AuthGetCurrentUser extends AuthEvent {
+  const AuthGetCurrentUser();
 }

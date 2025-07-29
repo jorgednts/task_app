@@ -5,8 +5,8 @@ import '../../domain/model/user/easy_task_user_model.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../mapper/easy_task_mapper.dart';
 import '../remote/data_source/auth/auth_remote_data_source.dart';
-import '../remote/model/register_user_params.dart';
-import '../remote/model/sign_in_params.dart';
+import '../remote/model/user/register_user_params.dart';
+import '../remote/model/user/sign_in_params.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({

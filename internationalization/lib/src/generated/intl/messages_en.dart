@@ -89,6 +89,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
       "Welcome to EasyTask!",
     ),
+    "common_error_message": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong, please try again",
+    ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
+    "common_hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "common_success_message": MessageLookupByLibrary.simpleMessage(
+      "Operation completed successfully",
+    ),
+    "common_success_title": MessageLookupByLibrary.simpleMessage("Success! :)"),
+    "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
+      "+ Add category",
+    ),
+    "tasks_category_label": MessageLookupByLibrary.simpleMessage("Category"),
+    "tasks_category_loading_message": MessageLookupByLibrary.simpleMessage(
+      "Loading categories...",
+    ),
+    "tasks_create_title": MessageLookupByLibrary.simpleMessage("Create Task"),
+    "tasks_delete_title": MessageLookupByLibrary.simpleMessage("Delete Task"),
+    "tasks_description_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Description is required",
+    ),
+    "tasks_description_label": MessageLookupByLibrary.simpleMessage(
+      "Description",
+    ),
+    "tasks_due_date": MessageLookupByLibrary.simpleMessage("Due date"),
+    "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Edit Task"),
+    "tasks_name_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Name is required",
+    ),
+    "tasks_name_label": MessageLookupByLibrary.simpleMessage("Name"),
+    "tasks_status_done": MessageLookupByLibrary.simpleMessage("Done"),
+    "tasks_status_in_progress": MessageLookupByLibrary.simpleMessage(
+      "In progress",
+    ),
+    "tasks_status_label": MessageLookupByLibrary.simpleMessage("Status"),
+    "tasks_status_to_do": MessageLookupByLibrary.simpleMessage("To do"),
   };
 }
