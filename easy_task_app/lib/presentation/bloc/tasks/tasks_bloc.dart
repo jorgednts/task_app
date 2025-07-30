@@ -30,6 +30,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
          const TasksListState.initial(
            categories: [],
            tasks: [],
+           currentQuery: '',
          ),
        ) {
     _onInit();
@@ -49,6 +50,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<CreateTask>(_onCreateTask);
     on<EditTask>(_onEditTask);
     on<DeleteTask>(_onDeleteTask);
+    on<LoadMoreTasks>(_onLoadMoreTasks);
   }
 
   Future<void> _onSignOut(SignOut event, Emitter<TasksState> emit) async {
@@ -120,16 +122,16 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       TasksListState.loading(
         categories: state.categories,
         tasks: state.tasks,
+        currentQuery: event.filtersParams.query,
       ),
     );
-    (await _getTasksUseCase.call(
-      NoParam(),
-    )).fold(
+    (await _getTasksUseCase.call(event.filtersParams)).fold(
       onOk: (result) {
         emit(
           TasksListState.success(
             categories: state.categories,
             tasks: result,
+            currentQuery: event.filtersParams.query,
           ),
         );
       },
@@ -138,6 +140,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksListState.error(
             categories: state.categories,
             tasks: [],
+            currentQuery: event.filtersParams.query,
           ),
         );
       },
@@ -152,6 +155,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       TasksListState.loading(
         categories: state.categories,
         tasks: state.tasks,
+        currentQuery: state.currentQuery,
       ),
     );
     (await _createTaskUseCase.call(
@@ -165,6 +169,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksListState.error(
             categories: state.categories,
             tasks: [],
+            currentQuery: state.currentQuery,
           ),
         );
       },
@@ -176,6 +181,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       TasksListState.loading(
         categories: state.categories,
         tasks: state.tasks,
+        currentQuery: state.currentQuery,
       ),
     );
     (await _editTaskUseCase.call(
@@ -189,6 +195,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksListState.error(
             categories: state.categories,
             tasks: state.tasks,
+            currentQuery: state.currentQuery,
           ),
         );
       },
@@ -200,6 +207,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       TasksListState.loading(
         categories: state.categories,
         tasks: state.tasks,
+        currentQuery: state.currentQuery,
       ),
     );
     (await _deleteTaskUseCase.call(event.id)).fold(
@@ -211,8 +219,43 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksListState.error(
             categories: state.categories,
             tasks: state.tasks,
+            currentQuery: state.currentQuery,
           ),
         );
+      },
+    );
+  }
+
+  Future<void> _onLoadMoreTasks(
+    LoadMoreTasks event,
+    Emitter<TasksState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is! TasksListState ||
+        currentState.isPaginating ||
+        !currentState.hasMore) {
+      return;
+    }
+
+    emit(currentState.copyWith(isPaginating: true));
+
+    final response = await _getTasksUseCase.call(event.filtersParams);
+
+    response.fold(
+      onOk: (newTasks) {
+        final allTasks = [...currentState.tasks, ...newTasks];
+        final hasMore = newTasks.length == event.filtersParams.limit;
+
+        emit(
+          currentState.copyWith(
+            tasks: allTasks,
+            hasMore: hasMore,
+            isPaginating: false,
+          ),
+        );
+      },
+      onError: (_) {
+        emit(currentState.copyWith(isPaginating: false));
       },
     );
   }

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'easy_task_category_color.dart';
 
 class EasyTaskCategoryModel extends Equatable {
-  EasyTaskCategoryModel({
+  const EasyTaskCategoryModel({
     required this.id,
     required this.name,
     required this.color,

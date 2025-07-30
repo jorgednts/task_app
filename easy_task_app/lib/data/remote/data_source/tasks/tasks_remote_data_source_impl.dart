@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../domain/model/tasks/params/get_tasks_filter_params.dart';
 import '../../model/task/easy_task_response.dart';
 import '../api_constants/supabase_constants.dart';
 import 'tasks_remote_data_source.dart';
@@ -56,21 +57,16 @@ class TasksRemoteDataSourceImpl implements TasksRemoteDataSource {
   }
 
   @override
-  Future<List<EasyTaskResponse>> getAllTasks() async {
+  Future<List<EasyTaskResponse>> getTasks({
+    required GetTasksFiltersParams filters,
+  }) async {
     try {
       final response = await _supabaseClient
-          .from(SupabaseConstants.tasksTable)
-          .select('''
-          *,
-          task_categories(
-            id,
-            name,
-            color,
-            user_id
+          .rpc(
+            SupabaseConstants.tasksWithCategory,
+            params: filters.toMap(_supabaseClient.auth.currentUser!.id),
           )
-        ''')
           .order('created_at');
-
       _logger.d('Fetched ${response.length} tasks');
       return (response as List)
           .map(

@@ -1,10 +1,9 @@
-import 'easy_task_category_model.dart';
-import 'easy_task_media_item_model.dart';
-import 'task_status.dart';
+import '../easy_task_category_model.dart';
+import '../easy_task_media_item_model.dart';
+import '../task_status.dart';
 
-class EditTaskParams {
-  EditTaskParams({
-    required this.id,
+class CreateTaskParams {
+  CreateTaskParams({
     required this.title,
     required this.description,
     required this.dueDate,
@@ -13,7 +12,6 @@ class EditTaskParams {
     required this.media,
   });
 
-  final String id;
   final String title;
   final String description;
   final DateTime dueDate;
@@ -24,7 +22,6 @@ class EditTaskParams {
   Map<String, dynamic> toQuery() {
     //TODO: implement media upload
     final result = {
-      'id': id,
       'title': title,
       'description': description,
       'due_date': dueDate.toIso8601String(),

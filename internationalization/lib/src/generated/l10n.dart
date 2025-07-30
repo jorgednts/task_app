@@ -104,6 +104,26 @@ class AppIntl {
     return Intl.message('Hello', name: 'common_hello', desc: '', args: []);
   }
 
+  /// `Search`
+  String get common_search_tooltip {
+    return Intl.message(
+      'Search',
+      name: 'common_search_tooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear search`
+  String get common_clear_tooltip {
+    return Intl.message(
+      'Clear search',
+      name: 'common_clear_tooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign Up`
   String get auth_sign_up_label {
     return Intl.message(
@@ -472,6 +492,16 @@ class AppIntl {
   /// `Done`
   String get tasks_status_done {
     return Intl.message('Done', name: 'tasks_status_done', desc: '', args: []);
+  }
+
+  /// `Search Tasks`
+  String get tasks_search_label {
+    return Intl.message(
+      'Search Tasks',
+      name: 'tasks_search_label',
+      desc: '',
+      args: [],
+    );
   }
 }
 

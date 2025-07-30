@@ -8,11 +8,13 @@ sealed class TasksState {
     required this.stateType,
     required this.tasks,
     required this.categories,
+    this.currentQuery = '',
   });
 
   final TasksStateType stateType;
   final List<EasyTaskModel> tasks;
   final List<EasyTaskCategoryModel> categories;
+  final String currentQuery;
 }
 
 class TasksSignOutState extends TasksState {
@@ -34,24 +36,82 @@ class TasksSignOutState extends TasksState {
 
 class TasksListState extends TasksState {
   const TasksListState.initial({
-    super.tasks = const [],
-    required super.categories,
-  }) : super(stateType: TasksStateType.initial);
+    List<EasyTaskModel> tasks = const [],
+    required List<EasyTaskCategoryModel> categories,
+    required String currentQuery,
+  }) : this(
+         tasks: tasks,
+         categories: categories,
+         stateType: TasksStateType.initial,
+         currentQuery: currentQuery,
+       );
 
   const TasksListState.loading({
-    super.tasks = const [],
-    required super.categories,
-  }) : super(stateType: TasksStateType.loading);
-
-  const TasksListState.error({
-    super.tasks = const [],
-    required super.categories,
-  }) : super(stateType: TasksStateType.error);
+    List<EasyTaskModel> tasks = const [],
+    required List<EasyTaskCategoryModel> categories,
+    required String currentQuery,
+  }) : this(
+         tasks: tasks,
+         categories: categories,
+         stateType: TasksStateType.loading,
+         currentQuery: currentQuery,
+       );
 
   const TasksListState.success({
+    required List<EasyTaskModel> tasks,
+    required List<EasyTaskCategoryModel> categories,
+    required String currentQuery,
+    bool hasMore = true,
+    bool isPaginating = false,
+  }) : this(
+         tasks: tasks,
+         categories: categories,
+         stateType: TasksStateType.success,
+         hasMore: hasMore,
+         isPaginating: isPaginating,
+         currentQuery: currentQuery,
+       );
+
+  const TasksListState.error({
+    List<EasyTaskModel> tasks = const [],
+    required List<EasyTaskCategoryModel> categories,
+    required String currentQuery,
+  }) : this(
+         tasks: tasks,
+         categories: categories,
+         stateType: TasksStateType.error,
+         currentQuery: currentQuery,
+       );
+
+  const TasksListState({
     required super.tasks,
     required super.categories,
-  }) : super(stateType: TasksStateType.success);
+    required super.stateType,
+    required super.currentQuery,
+    this.hasMore = true,
+    this.isPaginating = false,
+  });
+
+  final bool hasMore;
+  final bool isPaginating;
+
+  TasksListState copyWith({
+    List<EasyTaskModel>? tasks,
+    List<EasyTaskCategoryModel>? categories,
+    TasksStateType? stateType,
+    bool? hasMore,
+    bool? isPaginating,
+    String? currentQuery,
+  }) {
+    return TasksListState(
+      tasks: tasks ?? this.tasks,
+      categories: categories ?? this.categories,
+      stateType: stateType ?? this.stateType,
+      hasMore: hasMore ?? this.hasMore,
+      isPaginating: isPaginating ?? this.isPaginating,
+      currentQuery: currentQuery ?? this.currentQuery,
+    );
+  }
 }
 
 class ResetTasksState extends TasksState {

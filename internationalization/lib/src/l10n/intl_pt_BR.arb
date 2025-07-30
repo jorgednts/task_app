@@ -6,6 +6,8 @@
   "common_success_title": "Sucesso! :)",
   "common_success_message": "Operação concluída com sucesso",
   "common_hello": "Olá",
+  "common_search_tooltip": "Buscar",
+  "common_clear_tooltip": "Limpar busca",
   "auth_sign_up_label": "Cadastre-se",
   "auth_sign_in_label": "Entrar",
   "auth_name": "nome",
@@ -44,5 +46,6 @@
   "tasks_due_date": "Data de vencimento",
   "tasks_status_to_do": "A fazer",
   "tasks_status_in_progress": "Em progresso",
-  "tasks_status_done": "Concluído"
+  "tasks_status_done": "Concluído",
+  "tasks_search_label":  "Buscar Tarefas"
 }

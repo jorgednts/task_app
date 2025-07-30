@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internationalization/internationalization.dart';
 
-import '../../../../domain/model/tasks/create_task_params.dart';
+import '../../../../domain/model/tasks/params/create_task_params.dart';
 import '../../../../domain/model/tasks/easy_task_category_model.dart';
 import '../../../../domain/model/tasks/easy_task_model.dart';
-import '../../../../domain/model/tasks/edit_task_params.dart';
+import '../../../../domain/model/tasks/params/edit_task_params.dart';
 import '../../../../domain/model/tasks/task_status.dart';
 import '../../../bloc/tasks/tasks_event.dart';
 import '../../../utils/form_field_validators.dart';

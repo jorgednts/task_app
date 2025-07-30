@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import '../../domain/model/tasks/params/get_tasks_filter_params.dart';
 import '../../domain/use_case/auth/get_current_user_use_case.dart';
 import '../../domain/use_case/auth/register_user_use_case.dart';
 import '../../domain/use_case/auth/sign_in_use_case.dart';
@@ -45,7 +46,9 @@ abstract class PresentationDI {
                 deleteTaskUseCase: getIt.get<DeleteTaskUseCase>(),
               )
               ..add(const InitializeCategories())
-              ..add(const InitializeTasks()),
+              ..add(
+                const InitializeTasks(filtersParams: GetTasksFiltersParams()),
+              ),
       );
   }
 }

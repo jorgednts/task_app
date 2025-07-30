@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/remote/model/user/register_user_params.dart';
+import '../../../domain/model/user/register_user_params.dart';
 import '../../../data/remote/model/user/sign_in_params.dart';
 import '../../../domain/use_case/auth/get_current_user_use_case.dart';
 import '../../../domain/use_case/auth/register_user_use_case.dart';

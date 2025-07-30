@@ -1,8 +1,9 @@
 import 'package:core/core.dart';
 
-import '../../domain/model/tasks/create_task_params.dart';
 import '../../domain/model/tasks/easy_task_model.dart';
-import '../../domain/model/tasks/edit_task_params.dart';
+import '../../domain/model/tasks/params/create_task_params.dart';
+import '../../domain/model/tasks/params/edit_task_params.dart';
+import '../../domain/model/tasks/params/get_tasks_filter_params.dart';
 import '../../domain/repository/tasks_repository.dart';
 import '../mapper/easy_task_mapper.dart';
 import '../remote/data_source/tasks/tasks_remote_data_source.dart';
@@ -14,9 +15,11 @@ class TasksRepositoryImpl implements TasksRepository {
   final TasksRemoteDataSource _remoteDataSource;
 
   @override
-  AsyncResult<List<EasyTaskModel>> getAllTasks() async {
+  AsyncResult<List<EasyTaskModel>> getAllTasks({
+    required GetTasksFiltersParams filtersParams,
+  }) async {
     try {
-      final tasks = await _remoteDataSource.getAllTasks();
+      final tasks = await _remoteDataSource.getTasks(filters: filtersParams);
       return Result.ok(tasks.map((e) => e.toModel()).toList());
     } on CustomException catch (e) {
       return Result.error(e);

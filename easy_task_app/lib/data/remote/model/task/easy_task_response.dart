@@ -33,8 +33,8 @@ class EasyTaskResponse {
       status: json['status'] as String,
       userId: json['user_id'] as String,
       media: mediaItems,
-      category: json['task_categories'] != null
-          ? EasyTaskCategoryResponse.fromJson(json['task_categories'])
+      category: json['category'] != null
+          ? EasyTaskCategoryResponse.fromJson(json['category'])
           : null,
     );
   }

@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../../model/tasks/edit_task_params.dart';
+import '../../model/tasks/params/edit_task_params.dart';
 import '../../repository/tasks_repository.dart';
 
 class EditTaskUseCase implements BaseUseCase<EditTaskParams, void> {

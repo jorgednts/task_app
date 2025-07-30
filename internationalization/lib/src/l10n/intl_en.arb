@@ -6,6 +6,8 @@
   "common_success_title": "Success! :)",
   "common_success_message": "Operation completed successfully",
   "common_hello": "Hello",
+  "common_search_tooltip": "Search",
+  "common_clear_tooltip": "Clear search",
   "auth_sign_up_label": "Sign Up",
   "auth_sign_in_label": "Sign In",
   "auth_name": "name",
@@ -45,5 +47,6 @@
   "tasks_due_date": "Due date",
   "tasks_status_to_do": "To do",
   "tasks_status_in_progress": "In progress",
-  "tasks_status_done": "Done"
+  "tasks_status_done": "Done",
+  "tasks_search_label":  "Search Tasks"
 }

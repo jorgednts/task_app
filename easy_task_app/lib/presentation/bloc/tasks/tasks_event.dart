@@ -1,5 +1,6 @@
-import '../../../domain/model/tasks/create_task_params.dart';
-import '../../../domain/model/tasks/edit_task_params.dart';
+import '../../../domain/model/tasks/params/create_task_params.dart';
+import '../../../domain/model/tasks/params/edit_task_params.dart';
+import '../../../domain/model/tasks/params/get_tasks_filter_params.dart';
 
 sealed class TasksEvent {
   const TasksEvent();
@@ -14,7 +15,16 @@ class InitializeCategories extends TasksEvent {
 }
 
 class InitializeTasks extends TasksEvent {
-  const InitializeTasks();
+  const InitializeTasks({
+    required this.filtersParams,
+  });
+
+  final GetTasksFiltersParams filtersParams;
+}
+
+class LoadMoreTasks extends TasksEvent {
+  const LoadMoreTasks({required this.filtersParams});
+  final GetTasksFiltersParams filtersParams;
 }
 
 class CreateTask extends TasksEvent {

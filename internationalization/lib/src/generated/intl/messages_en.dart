@@ -89,11 +89,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
       "Welcome to EasyTask!",
     ),
+    "common_clear_tooltip": MessageLookupByLibrary.simpleMessage(
+      "Clear search",
+    ),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again",
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "common_search_tooltip": MessageLookupByLibrary.simpleMessage("Search"),
     "common_success_message": MessageLookupByLibrary.simpleMessage(
       "Operation completed successfully",
     ),
@@ -119,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Name is required",
     ),
     "tasks_name_label": MessageLookupByLibrary.simpleMessage("Name"),
+    "tasks_search_label": MessageLookupByLibrary.simpleMessage("Search Tasks"),
     "tasks_status_done": MessageLookupByLibrary.simpleMessage("Done"),
     "tasks_status_in_progress": MessageLookupByLibrary.simpleMessage(
       "In progress",
