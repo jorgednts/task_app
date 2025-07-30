@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:internationalization/internationalization.dart';
 
 enum EasyTaskCategoryColorModel {
   categoryBlue,
@@ -41,17 +42,39 @@ enum EasyTaskCategoryColorModel {
         'CategoryColorsExtension is not found in the current theme.',
       );
     }
-    final isDarkTheme = theme.brightness == Brightness.dark;
-    final color = switch (this) {
-      EasyTaskCategoryColorModel.categoryBlue => extension.categoryBlue,
-      EasyTaskCategoryColorModel.categoryYellow => extension.categoryYellow,
-      EasyTaskCategoryColorModel.categoryRed => extension.categoryRed,
-      EasyTaskCategoryColorModel.categoryOrange => extension.categoryOrange,
-      EasyTaskCategoryColorModel.categoryPurple => extension.categoryPurple,
-      EasyTaskCategoryColorModel.categoryBrown => extension.categoryBrown,
-      EasyTaskCategoryColorModel.categoryGrey => extension.categoryGrey,
-      EasyTaskCategoryColorModel.categoryGreen => extension.categoryGreen,
+    return switch (this) {
+      EasyTaskCategoryColorModel.categoryBlue => extension.categoryBlue.seed,
+      EasyTaskCategoryColorModel.categoryYellow =>
+        extension.categoryYellow.seed,
+      EasyTaskCategoryColorModel.categoryRed => extension.categoryRed.seed,
+      EasyTaskCategoryColorModel.categoryOrange =>
+        extension.categoryOrange.seed,
+      EasyTaskCategoryColorModel.categoryPurple =>
+        extension.categoryPurple.seed,
+      EasyTaskCategoryColorModel.categoryBrown => extension.categoryBrown.seed,
+      EasyTaskCategoryColorModel.categoryGrey => extension.categoryGrey.seed,
+      EasyTaskCategoryColorModel.categoryGreen => extension.categoryGreen.seed,
     };
-    return isDarkTheme ? color.dark.color : color.light.color;
+  }
+
+  String translated(AppIntl strings) {
+    switch (this) {
+      case EasyTaskCategoryColorModel.categoryBlue:
+        return strings.category_blue;
+      case EasyTaskCategoryColorModel.categoryYellow:
+        return strings.category_yellow;
+      case EasyTaskCategoryColorModel.categoryRed:
+        return strings.category_red;
+      case EasyTaskCategoryColorModel.categoryOrange:
+        return strings.category_orange;
+      case EasyTaskCategoryColorModel.categoryPurple:
+        return strings.category_purple;
+      case EasyTaskCategoryColorModel.categoryBrown:
+        return strings.category_brown;
+      case EasyTaskCategoryColorModel.categoryGrey:
+        return strings.category_grey;
+      case EasyTaskCategoryColorModel.categoryGreen:
+        return strings.category_green;
+    }
   }
 }

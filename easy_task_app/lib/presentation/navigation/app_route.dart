@@ -4,8 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../domain/model/user/easy_task_user_model.dart';
 import '../bloc/auth/auth_bloc.dart';
+import '../bloc/categories/categories_bloc.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../ui/auth/auth_page.dart';
+import '../ui/categories/categories_page.dart';
 import '../ui/tasks/tasks_page.dart';
 
 sealed class AppRoute {
@@ -55,6 +57,27 @@ final class TasksRoute extends AppRoute {
       child: TasksPage(
         user: EasyTaskUserModel.fromQuery(state.uri.queryParameters),
       ),
+    ),
+    routes: [
+      const CategoriesRoute().goRoute,
+    ],
+  );
+}
+
+final class CategoriesRoute extends AppRoute {
+  const CategoriesRoute()
+    : super(
+        path: '/categories',
+        name: 'categories',
+      );
+
+  @override
+  RouteBase get goRoute => GoRoute(
+    path: path,
+    name: name,
+    builder: (context, state) => BlocProvider<CategoriesBloc>(
+      create: (_) => GetIt.instance.get<CategoriesBloc>(),
+      child: const CategoriesPage(),
     ),
     routes: [],
   );

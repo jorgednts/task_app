@@ -42,6 +42,16 @@ class CategoriesSelector extends StatelessWidget {
       initialValue: selectedCategory,
       options: categories,
       nameBuilder: (category) => category?.name ?? '-',
+      leadingBuilder: (category) => category != null
+          ? Container(
+              decoration: BoxDecoration(
+                color: category.color.materialColor(Theme.of(context)),
+                shape: BoxShape.circle,
+              ),
+              width: RadiusSize.large,
+              height: RadiusSize.large,
+            )
+          : const SizedBox(),
       onChanged: (value) => onChanged(value),
     );
   }

@@ -8,6 +8,7 @@ class CustomDropdownButton<T> extends StatelessWidget {
     required this.initialValue,
     required this.options,
     required this.nameBuilder,
+    this.leadingBuilder,
     required this.onChanged,
   });
 
@@ -15,6 +16,7 @@ class CustomDropdownButton<T> extends StatelessWidget {
   final T initialValue;
   final List<T> options;
   final String Function(T selected) nameBuilder;
+  final Widget Function(T selected)? leadingBuilder;
   final void Function(T? selected) onChanged;
 
   @override
@@ -41,8 +43,14 @@ class CustomDropdownButton<T> extends StatelessWidget {
                   .map(
                     (status) => DropdownMenuItem<T>(
                       value: status,
-                      child: StyledText.b3(
-                        nameBuilder(status),
+                      child: Row(
+                        spacing: Spacing.small,
+                        children: [
+                          if (leadingBuilder != null) leadingBuilder!(status),
+                          StyledText.b3(
+                            nameBuilder(status),
+                          ),
+                        ],
                       ),
                     ),
                   )

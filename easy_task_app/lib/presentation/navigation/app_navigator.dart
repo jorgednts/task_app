@@ -14,6 +14,10 @@ extension AppNavigator on BuildContext {
     );
   }
 
+  void navigateToCategoriesPage() {
+    pushNamed(const CategoriesRoute().name);
+  }
+
   void signOut() {
     pushReplacementNamed(const AuthRoute().name);
   }

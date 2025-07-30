@@ -89,14 +89,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
       "Welcome to EasyTask!",
     ),
+    "categories_create_title": MessageLookupByLibrary.simpleMessage(
+      "Create Category",
+    ),
+    "categories_delete_title": MessageLookupByLibrary.simpleMessage(
+      "Delete Category",
+    ),
+    "categories_edit_title": MessageLookupByLibrary.simpleMessage(
+      "Edit Category",
+    ),
+    "categories_title": MessageLookupByLibrary.simpleMessage("Categories"),
+    "category_blue": MessageLookupByLibrary.simpleMessage("Blue"),
+    "category_brown": MessageLookupByLibrary.simpleMessage("Brown"),
+    "category_green": MessageLookupByLibrary.simpleMessage("Green"),
+    "category_grey": MessageLookupByLibrary.simpleMessage("Grey"),
+    "category_orange": MessageLookupByLibrary.simpleMessage("Orange"),
+    "category_purple": MessageLookupByLibrary.simpleMessage("Purple"),
+    "category_red": MessageLookupByLibrary.simpleMessage("Red"),
+    "category_yellow": MessageLookupByLibrary.simpleMessage("Yellow"),
     "common_clear_tooltip": MessageLookupByLibrary.simpleMessage(
       "Clear search",
     ),
+    "common_color": MessageLookupByLibrary.simpleMessage("Color"),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again",
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "common_name_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Name is required",
+    ),
+    "common_name_title": MessageLookupByLibrary.simpleMessage("Name"),
     "common_search_tooltip": MessageLookupByLibrary.simpleMessage("Search"),
     "common_success_message": MessageLookupByLibrary.simpleMessage(
       "Operation completed successfully",
@@ -119,10 +142,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tasks_due_date": MessageLookupByLibrary.simpleMessage("Due date"),
     "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Edit Task"),
-    "tasks_name_empty_error": MessageLookupByLibrary.simpleMessage(
-      "Name is required",
-    ),
-    "tasks_name_label": MessageLookupByLibrary.simpleMessage("Name"),
     "tasks_search_label": MessageLookupByLibrary.simpleMessage("Search Tasks"),
     "tasks_status_done": MessageLookupByLibrary.simpleMessage("Done"),
     "tasks_status_in_progress": MessageLookupByLibrary.simpleMessage(

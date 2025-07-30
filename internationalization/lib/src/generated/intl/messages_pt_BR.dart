@@ -86,21 +86,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
       "Bem vindo ao EasyTask!",
     ),
+    "categories_create_title": MessageLookupByLibrary.simpleMessage(
+      "Criar Categoria",
+    ),
+    "categories_delete_title": MessageLookupByLibrary.simpleMessage(
+      "Deletar Categoria",
+    ),
+    "categories_edit_title": MessageLookupByLibrary.simpleMessage(
+      "Editar Categoria",
+    ),
+    "categories_title": MessageLookupByLibrary.simpleMessage("Categorias"),
+    "category_blue": MessageLookupByLibrary.simpleMessage("Azul"),
+    "category_brown": MessageLookupByLibrary.simpleMessage("Marrom"),
+    "category_green": MessageLookupByLibrary.simpleMessage("Verde"),
+    "category_grey": MessageLookupByLibrary.simpleMessage("Cinza"),
+    "category_orange": MessageLookupByLibrary.simpleMessage("Laranja"),
+    "category_purple": MessageLookupByLibrary.simpleMessage("Roxo"),
+    "category_red": MessageLookupByLibrary.simpleMessage("Vermelho"),
+    "category_yellow": MessageLookupByLibrary.simpleMessage("Amarelo"),
     "common_clear_tooltip": MessageLookupByLibrary.simpleMessage(
       "Limpar busca",
     ),
+    "common_color": MessageLookupByLibrary.simpleMessage("Cor"),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Algo deu errado, tente novamente",
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Olá"),
+    "common_name_empty_error": MessageLookupByLibrary.simpleMessage(
+      "Nome é obrigatório",
+    ),
+    "common_name_title": MessageLookupByLibrary.simpleMessage("Nome"),
     "common_search_tooltip": MessageLookupByLibrary.simpleMessage("Buscar"),
     "common_success_message": MessageLookupByLibrary.simpleMessage(
       "Operação concluída com sucesso",
     ),
     "common_success_title": MessageLookupByLibrary.simpleMessage("Sucesso! :)"),
     "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
-      "+ Adicioanr categoria",
+      "+ Adicionar categoria",
     ),
     "tasks_category_label": MessageLookupByLibrary.simpleMessage("Categoria"),
     "tasks_category_loading_message": MessageLookupByLibrary.simpleMessage(
@@ -120,10 +143,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Data de vencimento",
     ),
     "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Editar Tarefa"),
-    "tasks_name_empty_error": MessageLookupByLibrary.simpleMessage(
-      "Nome é obrigatório",
-    ),
-    "tasks_name_label": MessageLookupByLibrary.simpleMessage("Nome"),
     "tasks_search_label": MessageLookupByLibrary.simpleMessage(
       "Buscar Tarefas",
     ),

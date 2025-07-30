@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internationalization/internationalization.dart';
 
-import '../../../../domain/model/tasks/params/create_task_params.dart';
 import '../../../../domain/model/tasks/easy_task_category_model.dart';
 import '../../../../domain/model/tasks/easy_task_model.dart';
+import '../../../../domain/model/tasks/params/create_task_params.dart';
 import '../../../../domain/model/tasks/params/edit_task_params.dart';
 import '../../../../domain/model/tasks/task_status.dart';
 import '../../../bloc/tasks/tasks_event.dart';
@@ -91,11 +91,11 @@ class _TaskFormState extends State<TaskForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextFormField(
-                    label: strings.tasks_name_label,
+                    label: strings.common_name_title,
                     maxLines: 1,
                     controller: nameController,
                     validator: FormFieldValidators.generic(
-                      emptyMessage: strings.tasks_name_empty_error,
+                      emptyMessage: strings.common_name_empty_error,
                     ),
                   ),
                   CustomDatePicker(
@@ -123,7 +123,8 @@ class _TaskFormState extends State<TaskForm> {
                     onChanged: (selected) {
                       setState(() => selectedCategory = selected);
                     },
-                    onAddCategory: () => context.pop(const CreateCategory()),
+                    onAddCategory: () =>
+                        context.pop(const TaskCreateCategory()),
                   ),
                   CustomTextFormField(
                     label: strings.tasks_description_label,

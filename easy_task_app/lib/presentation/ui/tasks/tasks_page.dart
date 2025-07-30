@@ -48,126 +48,131 @@ class TasksPage extends StatelessWidget {
     final strings = AppIntl.of(context);
     return ThemeModeBuilder(
       builder: (themeState) {
-        return Scaffold(
-          appBar: CommonAppBar(
-            appThemeMode: themeState.themeMode,
-            statusBarColor: Theme.of(context).scaffoldBackgroundColor,
+        return ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: WidthResponsiveBreakpoints.large,
           ),
-          body: SafeArea(
-            child: Container(
-              constraints: const BoxConstraints(
-                maxWidth: WidthResponsiveBreakpoints.large,
-              ),
-              padding: const EdgeInsets.all(Spacing.medium),
-              child: BlocConsumer<TasksBloc, TasksState>(
-                listener: (context, state) {
-                  if (state.stateType == TasksStateType.error) {
-                    ScaffoldMessengerHandler.showErrorSnackBar(
-                      context,
-                      title: strings.common_error_title,
-                      message: strings.common_error_message,
-                    );
-                  } else {
-                    switch (state) {
-                      case TasksSignOutState():
-                        if (state.stateType == TasksStateType.success) {
-                          context.pushReplacementNamed(
-                            const AuthRoute().name,
-                          );
-                        }
-                      case TasksListState():
-                        break;
-                      case ResetTasksState():
-                        ScaffoldMessengerHandler.showSuccessSnackBar(
+          child: Scaffold(
+            appBar: CommonAppBar(
+              appThemeMode: themeState.themeMode,
+              statusBarColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
+            body: SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(Spacing.medium),
+                  child: BlocConsumer<TasksBloc, TasksState>(
+                    listener: (context, state) {
+                      if (state.stateType == TasksStateType.error) {
+                        ScaffoldMessengerHandler.showErrorSnackBar(
                           context,
-                          message: strings.common_success_message,
-                          title: strings.common_success_title,
+                          title: strings.common_error_title,
+                          message: strings.common_error_message,
                         );
-                        context.read<TasksBloc>().add(
-                          const InitializeTasks(
-                            filtersParams: GetTasksFiltersParams(),
-                          ),
-                        );
-                        break;
-                      case CategoriesListState():
-                        break;
-                    }
-                  }
-                },
-                builder: (context, state) {
-                  return Stack(
-                    children: [
-                      Positioned.fill(
-                        child: Column(
-                          spacing: Spacing.medium,
-                          children: [
-                            CommonTopMenu(
-                              username: user.name,
-                              onLogoutPressed: () =>
-                                  context.read<TasksBloc>().add(
-                                    const SignOut(),
-                                  ),
-                            ),
-                            CustomSearchTextField(
-                              label: strings.tasks_search_label,
-                              searchTooltip: strings.common_search_tooltip,
-                              clearTooltip: strings.common_clear_tooltip,
-                              onSearch: (filter) =>
-                                  context.read<TasksBloc>().add(
-                                    InitializeTasks(
-                                      filtersParams: GetTasksFiltersParams(
-                                        query: filter,
+                      } else {
+                        switch (state) {
+                          case TasksSignOutState():
+                            if (state.stateType == TasksStateType.success) {
+                              context.pushReplacementNamed(
+                                const AuthRoute().name,
+                              );
+                            }
+                          case TasksListState():
+                            break;
+                          case ResetTasksState():
+                            ScaffoldMessengerHandler.showSuccessSnackBar(
+                              context,
+                              message: strings.common_success_message,
+                              title: strings.common_success_title,
+                            );
+                            context.read<TasksBloc>().add(
+                              const InitializeTasks(
+                                filtersParams: GetTasksFiltersParams(),
+                              ),
+                            );
+                            break;
+                          case CategoriesListState():
+                            break;
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      return Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Column(
+                              spacing: Spacing.medium,
+                              children: [
+                                CommonTopMenu(
+                                  username: user.name,
+                                  onLogoutPressed: () =>
+                                      context.read<TasksBloc>().add(
+                                        const SignOut(),
                                       ),
+                                ),
+                                CustomSearchTextField(
+                                  label: strings.tasks_search_label,
+                                  searchTooltip: strings.common_search_tooltip,
+                                  clearTooltip: strings.common_clear_tooltip,
+                                  onSearch: (filter) =>
+                                      context.read<TasksBloc>().add(
+                                        InitializeTasks(
+                                          filtersParams: GetTasksFiltersParams(
+                                            query: filter,
+                                          ),
+                                        ),
+                                      ),
+                                  onClear: () => context.read<TasksBloc>().add(
+                                    const InitializeTasks(
+                                      filtersParams: GetTasksFiltersParams(),
                                     ),
                                   ),
-                              onClear: () => context.read<TasksBloc>().add(
-                                const InitializeTasks(
-                                  filtersParams: GetTasksFiltersParams(),
                                 ),
-                              ),
-                            ),
-                            Expanded(
-                              child: state.stateType == TasksStateType.loading
-                                  ? const Center(
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : state is TasksListState
-                                  ? TaskGridView(
-                                      tasks: state.tasks,
-                                      onTap: (task) => handleTaskOperation(
-                                        context,
-                                        state,
-                                        task: task,
-                                      ),
-                                      isPaginating: state.isPaginating,
-                                      hasMore: state.hasMore,
-                                      onLoadMore: () {
-                                        context.read<TasksBloc>().add(
-                                          LoadMoreTasks(
-                                            filtersParams:
-                                                GetTasksFiltersParams(
-                                                  query: state.currentQuery,
-                                                  offset: state.tasks.length,
-                                                ),
+                                Expanded(
+                                  child: state.stateType == TasksStateType.loading
+                                      ? const Center(
+                                          child: CircularProgressIndicator(),
+                                        )
+                                      : state is TasksListState
+                                      ? TaskGridView(
+                                          tasks: state.tasks,
+                                          onTap: (task) => handleTaskOperation(
+                                            context,
+                                            state,
+                                            task: task,
                                           ),
-                                        );
-                                      },
-                                    )
-                                  : Container(),
+                                          isPaginating: state.isPaginating,
+                                          hasMore: state.hasMore,
+                                          onLoadMore: () {
+                                            context.read<TasksBloc>().add(
+                                              LoadMoreTasks(
+                                                filtersParams:
+                                                    GetTasksFiltersParams(
+                                                      query: state.currentQuery,
+                                                      offset: state.tasks.length,
+                                                    ),
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : Container(),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: FloatingActionButton(
-                          onPressed: () => handleTaskOperation(context, state),
-                          child: const Icon(Icons.add),
-                        ),
-                      ),
-                    ],
-                  );
-                },
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: FloatingActionButton(
+                              onPressed: () =>
+                                  handleTaskOperation(context, state),
+                              child: const Icon(Icons.add),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
           ),

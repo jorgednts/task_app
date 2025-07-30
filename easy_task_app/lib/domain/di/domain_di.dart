@@ -9,6 +9,9 @@ import '../use_case/auth/get_current_user_use_case.dart';
 import '../use_case/auth/register_user_use_case.dart';
 import '../use_case/auth/sign_in_use_case.dart';
 import '../use_case/auth/sign_out_use_case.dart';
+import '../use_case/categories/create_category_use_case.dart';
+import '../use_case/categories/delete_category_use_case.dart';
+import '../use_case/categories/edit_category_use_case.dart';
 import '../use_case/categories/get_categories_use_case.dart';
 import '../use_case/local/get_theme_mode_use_case.dart';
 import '../use_case/local/set_theme_mode_use_case.dart';
@@ -83,6 +86,21 @@ abstract class DomainDI {
       ..registerFactory<DeleteTaskUseCase>(
         () => DeleteTaskUseCase(
           tasksRepository: tasksRepository,
+        ),
+      )
+      ..registerFactory<CreateCategoryUseCase>(
+        () => CreateCategoryUseCase(
+          categoriesRepository: categoriesRepository,
+        ),
+      )
+      ..registerFactory<EditCategoryUseCase>(
+        () => EditCategoryUseCase(
+          categoriesRepository: categoriesRepository,
+        ),
+      )
+      ..registerFactory<DeleteCategoryUseCase>(
+        () => DeleteCategoryUseCase(
+          categoriesRepository: categoriesRepository,
         ),
       );
   }

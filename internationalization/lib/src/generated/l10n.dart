@@ -124,6 +124,26 @@ class AppIntl {
     );
   }
 
+  /// `Color`
+  String get common_color {
+    return Intl.message('Color', name: 'common_color', desc: '', args: []);
+  }
+
+  /// `Name`
+  String get common_name_title {
+    return Intl.message('Name', name: 'common_name_title', desc: '', args: []);
+  }
+
+  /// `Name is required`
+  String get common_name_empty_error {
+    return Intl.message(
+      'Name is required',
+      name: 'common_name_empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign Up`
   String get auth_sign_up_label {
     return Intl.message(
@@ -389,21 +409,6 @@ class AppIntl {
     );
   }
 
-  /// `Name`
-  String get tasks_name_label {
-    return Intl.message('Name', name: 'tasks_name_label', desc: '', args: []);
-  }
-
-  /// `Name is required`
-  String get tasks_name_empty_error {
-    return Intl.message(
-      'Name is required',
-      name: 'tasks_name_empty_error',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Description`
   String get tasks_description_label {
     return Intl.message(
@@ -502,6 +507,86 @@ class AppIntl {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Categories`
+  String get categories_title {
+    return Intl.message(
+      'Categories',
+      name: 'categories_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Category`
+  String get categories_create_title {
+    return Intl.message(
+      'Create Category',
+      name: 'categories_create_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Category`
+  String get categories_edit_title {
+    return Intl.message(
+      'Edit Category',
+      name: 'categories_edit_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Category`
+  String get categories_delete_title {
+    return Intl.message(
+      'Delete Category',
+      name: 'categories_delete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blue`
+  String get category_blue {
+    return Intl.message('Blue', name: 'category_blue', desc: '', args: []);
+  }
+
+  /// `Yellow`
+  String get category_yellow {
+    return Intl.message('Yellow', name: 'category_yellow', desc: '', args: []);
+  }
+
+  /// `Red`
+  String get category_red {
+    return Intl.message('Red', name: 'category_red', desc: '', args: []);
+  }
+
+  /// `Orange`
+  String get category_orange {
+    return Intl.message('Orange', name: 'category_orange', desc: '', args: []);
+  }
+
+  /// `Purple`
+  String get category_purple {
+    return Intl.message('Purple', name: 'category_purple', desc: '', args: []);
+  }
+
+  /// `Brown`
+  String get category_brown {
+    return Intl.message('Brown', name: 'category_brown', desc: '', args: []);
+  }
+
+  /// `Grey`
+  String get category_grey {
+    return Intl.message('Grey', name: 'category_grey', desc: '', args: []);
+  }
+
+  /// `Green`
+  String get category_green {
+    return Intl.message('Green', name: 'category_green', desc: '', args: []);
   }
 }
 

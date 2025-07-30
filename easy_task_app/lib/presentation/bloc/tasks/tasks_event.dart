@@ -45,6 +45,6 @@ class DeleteTask extends TasksEvent {
   final String id;
 }
 
-class CreateCategory extends TasksEvent {
-  const CreateCategory();
+class TaskCreateCategory extends TasksEvent {
+  const TaskCreateCategory();
 }

@@ -35,14 +35,13 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   @override
   Future<void> createCategory({required Map<String, dynamic> params}) async {
     try {
-      final response = await _supabaseClient
+      if (params['user_id'] == null) {
+        params['user_id'] = _supabaseClient.auth.currentUser!.id;
+      }
+      await _supabaseClient
           .from(SupabaseConstants.tasksCategories)
           .insert(params);
-
-      if (response == null) {
-        _logger.e('Failed to create category');
-        throw const GenericException(message: 'Failed to create category');
-      }
+      _logger.d('Category created successfully');
     } catch (e) {
       _logger.e('Failed to create categories: $e');
       throw GenericException(message: e.toString());
@@ -52,6 +51,9 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   @override
   Future<void> updateCategory({required Map<String, dynamic> params}) async {
     try {
+      if (params['user_id'] == null) {
+        params['user_id'] = _supabaseClient.auth.currentUser!.id;
+      }
       await _supabaseClient
           .from(SupabaseConstants.tasksCategories)
           .update({

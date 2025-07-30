@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
 
 import '../../domain/model/tasks/easy_task_category_model.dart';
+import '../../domain/model/tasks/params/create_category_param.dart';
+import '../../domain/model/tasks/params/edit_category_params.dart';
 import '../../domain/repository/categories_repository.dart';
 import '../mapper/easy_task_mapper.dart';
 import '../remote/data_source/categories/categories_remote_data_source.dart';
@@ -26,10 +28,10 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
 
   @override
   AsyncResult<void> createCategory({
-    required EasyTaskCategoryModel category,
+    required CreateCategoryParams params,
   }) async {
     try {
-      await _remoteDataSource.createCategory(params: category.toQuery());
+      await _remoteDataSource.createCategory(params: params.toQuery());
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -40,10 +42,10 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
 
   @override
   AsyncResult<void> updateCategory({
-    required EasyTaskCategoryModel category,
+    required EditCategoryParams params,
   }) async {
     try {
-      await _remoteDataSource.updateCategory(params: category.toQuery());
+      await _remoteDataSource.updateCategory(params: params.toQuery());
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
