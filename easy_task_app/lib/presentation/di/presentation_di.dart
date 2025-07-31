@@ -19,6 +19,8 @@ import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/categories/categories_bloc.dart';
 import '../bloc/categories/categories_event.dart';
+import '../bloc/task_form/task_form_bloc.dart';
+import '../bloc/task_form/task_form_event.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../bloc/tasks/tasks_event.dart';
 import '../bloc/theme/app_theme_bloc.dart';
@@ -43,17 +45,11 @@ abstract class PresentationDI {
       ..registerFactory(
         () =>
             TasksBloc(
-                signOutUseCase: getIt.get<SignOutUseCase>(),
-                getCategoriesUseCase: getIt.get<GetCategoriesUseCase>(),
-                getTasksUseCase: getIt.get<GetTasksUseCase>(),
-                createTaskUseCase: getIt.get<CreateTaskUseCase>(),
-                editTaskUseCase: getIt.get<EditTaskUseCase>(),
-                deleteTaskUseCase: getIt.get<DeleteTaskUseCase>(),
-              )
-              ..add(const InitializeCategories())
-              ..add(
-                const InitializeTasks(filtersParams: GetTasksFiltersParams()),
-              ),
+              signOutUseCase: getIt.get<SignOutUseCase>(),
+              getTasksUseCase: getIt.get<GetTasksUseCase>(),
+            )..add(
+              const InitializeTasks(filtersParams: GetTasksFiltersParams()),
+            ),
       )
       ..registerFactory(
         () => CategoriesBloc(
@@ -62,6 +58,14 @@ abstract class PresentationDI {
           editCategoryUseCase: getIt.get<EditCategoryUseCase>(),
           deleteCategoryUseCase: getIt.get<DeleteCategoryUseCase>(),
         )..add(const InitCategories()),
+      )
+      ..registerFactory(
+        () => TaskFormBloc(
+          getCategoriesUseCase: getIt.get<GetCategoriesUseCase>(),
+          createTaskUseCase: getIt.get<CreateTaskUseCase>(),
+          editTaskUseCase: getIt.get<EditTaskUseCase>(),
+          deleteTaskUseCase: getIt.get<DeleteTaskUseCase>(),
+        )..add(const GetCategoriesTaskForm(categories: [])),
       );
   }
 }

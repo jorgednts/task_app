@@ -1,7 +1,7 @@
 class GetTasksFiltersParams {
   const GetTasksFiltersParams({
     this.query = '',
-    this.limit = 10,
+    this.limit = 25,
     this.offset = 0,
   });
 

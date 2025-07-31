@@ -84,6 +84,14 @@ class CategoriesPage extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
+                    : (state is CategoriesListSuccessState &&
+                          state.categories.isEmpty)
+                    ? Center(
+                        child: StyledText.t2(
+                          strings.categories_empty_message,
+                          isBold: true,
+                        ),
+                      )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

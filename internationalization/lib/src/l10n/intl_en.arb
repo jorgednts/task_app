@@ -54,6 +54,8 @@
   "categories_create_title": "Create Category",
   "categories_edit_title": "Edit Category",
   "categories_delete_title": "Delete Category",
+  "categories_loading_message": "Loading categories...",
+  "categories_empty_message": "No categories found. Click the button below and add a new one!",
   "category_blue": "Blue",
   "category_yellow": "Yellow",
   "category_red": "Red",

@@ -53,36 +53,46 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      expands: widget.expands,
-      autocorrect: widget.autocorrect,
-      maxLines: widget.maxLines,
-      minLines: widget.minLines,
-      readOnly: !widget.enabled,
-      keyboardType: widget.keyboardType,
-      textAlignVertical: widget.expands ? TextAlignVertical.top : null,
-      onTapOutside: (_) =>  FocusScope.of(context).unfocus(),
-      decoration:
-          widget.decoration ??
-          InputDecoration(
-            constraints: widget.constraints,
-            labelText: widget.label,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(RadiusSize.large),
-            ),
-            suffixIcon: widget.obscureText
-                ? InkWell(
-                    onTap: toggleObscureText,
-                    overlayColor: WidgetStateColor.transparent,
-                    child: Icon(
-                      obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                  )
-                : null,
-          ),
-      validator: widget.validator,
-      obscureText: obscureText,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: Spacing.small,
+      children: [
+        StyledText.b3(
+          widget.label,
+          isBold: true,
+        ),
+        TextFormField(
+          controller: widget.controller,
+          expands: widget.expands,
+          autocorrect: widget.autocorrect,
+          maxLines: widget.maxLines,
+          minLines: widget.minLines,
+          readOnly: !widget.enabled,
+          keyboardType: widget.keyboardType,
+          textAlignVertical: widget.expands ? TextAlignVertical.top : null,
+          onTapOutside: (_) =>  FocusScope.of(context).unfocus(),
+          decoration:
+              widget.decoration ??
+              InputDecoration(
+                constraints: widget.constraints,
+                labelText: widget.label,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(RadiusSize.large),
+                ),
+                suffixIcon: widget.obscureText
+                    ? InkWell(
+                        onTap: toggleObscureText,
+                        overlayColor: WidgetStateColor.transparent,
+                        child: Icon(
+                          obscureText ? Icons.visibility : Icons.visibility_off,
+                        ),
+                      )
+                    : null,
+              ),
+          validator: widget.validator,
+          obscureText: obscureText,
+        ),
+      ],
     );
   }
 }

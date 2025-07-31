@@ -31,7 +31,7 @@ class CategoriesSelector extends StatelessWidget {
             isBold: true,
           ),
           CustomTextButton(
-            onPressed: () => onChanged(null),
+            onPressed: onAddCategory,
             label: strings.tasks_category_add_message,
           ),
         ],

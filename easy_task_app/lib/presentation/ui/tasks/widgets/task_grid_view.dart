@@ -37,7 +37,7 @@ class _TaskGridViewState extends State<TaskGridView> {
 
   void _onScroll() {
     if (_controller.position.pixels >=
-        _controller.position.maxScrollExtent - 300) {
+        _controller.position.maxScrollExtent - 200) {
       if (widget.onLoadMore != null && widget.hasMore && !widget.isPaginating) {
         widget.onLoadMore!();
       }

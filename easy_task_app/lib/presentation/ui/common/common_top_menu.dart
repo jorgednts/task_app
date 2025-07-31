@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/theme/app_theme_bloc.dart';
 import '../../bloc/theme/app_theme_event.dart';
 import '../../constants/image_constants.dart';
-import '../../navigation/app_navigator.dart';
 import 'theme_mode_builder.dart';
 
 class CommonTopMenu extends StatelessWidget {
@@ -13,10 +12,12 @@ class CommonTopMenu extends StatelessWidget {
     super.key,
     required this.username,
     required this.onLogoutPressed,
+    required this.onCategoriesPressed,
   });
 
   final String username;
   final void Function() onLogoutPressed;
+  final void Function() onCategoriesPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class CommonTopMenu extends StatelessWidget {
                     ),
                     Flexible(
                       child: IconButton.filledTonal(
-                        onPressed: context.navigateToCategoriesPage,
+                        onPressed: onCategoriesPressed,
                         icon: const Icon(Icons.style),
                         iconSize: IconSize.small,
                       ),

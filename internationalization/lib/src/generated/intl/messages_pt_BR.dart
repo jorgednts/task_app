@@ -95,6 +95,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "categories_edit_title": MessageLookupByLibrary.simpleMessage(
       "Editar Categoria",
     ),
+    "categories_empty_message": MessageLookupByLibrary.simpleMessage(
+      "Nenhuma categoria encontrada. Clique no botão abaixo e adicione uma nova!",
+    ),
+    "categories_loading_message": MessageLookupByLibrary.simpleMessage(
+      "Carregando categorias...",
+    ),
     "categories_title": MessageLookupByLibrary.simpleMessage("Categorias"),
     "category_blue": MessageLookupByLibrary.simpleMessage("Azul"),
     "category_brown": MessageLookupByLibrary.simpleMessage("Marrom"),

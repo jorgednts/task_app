@@ -2,12 +2,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../domain/model/tasks/easy_task_model.dart';
 import '../../domain/model/user/easy_task_user_model.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/categories/categories_bloc.dart';
+import '../bloc/task_form/task_form_bloc.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../ui/auth/auth_page.dart';
 import '../ui/categories/categories_page.dart';
+import '../ui/task_form/task_form_page.dart';
 import '../ui/tasks/tasks_page.dart';
 
 sealed class AppRoute {
@@ -60,6 +63,7 @@ final class TasksRoute extends AppRoute {
     ),
     routes: [
       const CategoriesRoute().goRoute,
+      const TaskFormRoute().goRoute,
     ],
   );
 }
@@ -67,7 +71,7 @@ final class TasksRoute extends AppRoute {
 final class CategoriesRoute extends AppRoute {
   const CategoriesRoute()
     : super(
-        path: '/categories',
+        path: 'categories',
         name: 'categories',
       );
 
@@ -80,5 +84,31 @@ final class CategoriesRoute extends AppRoute {
       child: const CategoriesPage(),
     ),
     routes: [],
+  );
+}
+
+final class TaskFormRoute extends AppRoute {
+  const TaskFormRoute()
+    : super(
+        path: 'form',
+        name: 'task_form',
+      );
+
+  @override
+  RouteBase get goRoute => GoRoute(
+    path: path,
+    name: name,
+    builder: (context, state) {
+      return BlocProvider<TaskFormBloc>(
+      create: (_) => GetIt.instance.get<TaskFormBloc>(),
+      child: TaskFormPage(
+        task: state.uri.queryParameters.isEmpty
+            ? null
+            : EasyTaskModel.fromQuery(
+                state.uri.queryParameters,
+              ),
+      ),
+    );
+    },
   );
 }

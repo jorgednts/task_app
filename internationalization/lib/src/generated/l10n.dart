@@ -549,6 +549,26 @@ class AppIntl {
     );
   }
 
+  /// `Loading categories...`
+  String get categories_loading_message {
+    return Intl.message(
+      'Loading categories...',
+      name: 'categories_loading_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No categories found. Click the button below and add a new one!`
+  String get categories_empty_message {
+    return Intl.message(
+      'No categories found. Click the button below and add a new one!',
+      name: 'categories_empty_message',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Blue`
   String get category_blue {
     return Intl.message('Blue', name: 'category_blue', desc: '', args: []);

@@ -58,10 +58,10 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     emit(CategoryLoadingState(categories: state.categories));
     (await _createCategoryUseCase.call(event.params)).fold(
       onOk: (result) {
-        emit(CategoriesListSuccessState(categories: state.categories));
+        emit(CategorySuccessState(categories: state.categories));
       },
       onError: (error) {
-        emit(CategoriesListErrorState(categories: state.categories));
+        emit(CategoryErrorState(categories: state.categories));
       },
     );
   }

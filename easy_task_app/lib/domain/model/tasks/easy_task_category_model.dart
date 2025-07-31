@@ -10,6 +10,15 @@ class EasyTaskCategoryModel extends Equatable {
     required this.userId,
   });
 
+  factory EasyTaskCategoryModel.fromQuery(Map<String, dynamic> query) {
+    return EasyTaskCategoryModel(
+      id: query['id'] ?? '',
+      name: query['name'] ?? '',
+      color: EasyTaskCategoryColorModel.fromName(query['color']),
+      userId: query['user_id'] ?? '',
+    );
+  }
+
   final String id;
   final String name;
   final EasyTaskCategoryColorModel color;
