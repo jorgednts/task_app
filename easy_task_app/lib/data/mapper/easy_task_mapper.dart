@@ -4,7 +4,6 @@ import '../../domain/model/tasks/easy_task_media_item_model.dart';
 import '../../domain/model/tasks/easy_task_model.dart';
 import '../../domain/model/tasks/task_status.dart';
 import '../../domain/model/user/easy_task_user_model.dart';
-import '../local/model/easy_task_local_cache.dart';
 import '../remote/model/task/easy_task_category_response.dart';
 import '../remote/model/task/easy_task_media_item_response.dart';
 import '../remote/model/task/easy_task_response.dart';
@@ -17,16 +16,6 @@ extension EasyTaskUserResponseMapper on EasyTaskUserResponse {
       name: name ?? EmptyConstants.emptyString,
       email: email ?? EmptyConstants.emptyString,
       id: id ?? EmptyConstants.emptyString,
-    );
-  }
-}
-
-extension EasyTaskUserCacheMapper on EasyTaskUserCache {
-  EasyTaskUserModel toModel() {
-    return EasyTaskUserModel(
-      name: name,
-      email: email,
-      id: id,
     );
   }
 }

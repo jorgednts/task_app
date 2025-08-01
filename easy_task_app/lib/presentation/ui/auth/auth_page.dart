@@ -9,7 +9,7 @@ import '../../bloc/auth/auth_state.dart';
 import '../../constants/image_constants.dart';
 import '../../navigation/app_navigator.dart';
 import '../common/common_app_bar.dart';
-import '../common/theme_mode_builder.dart';
+import '../common/global_builder.dart';
 import 'widgets/auth_form.dart';
 
 class AuthPage extends StatelessWidget {
@@ -47,7 +47,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = Theme.of(context).colorScheme.surfaceContainerHigh;
-    return ThemeModeBuilder(
+    return GlobalBuilder(
       builder: (state) {
         return Scaffold(
           appBar: CommonAppBar(

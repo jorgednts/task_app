@@ -14,7 +14,7 @@ import '../../navigation/app_navigator.dart';
 import '../../navigation/app_route.dart';
 import '../common/common_app_bar.dart';
 import '../common/common_top_menu.dart';
-import '../common/theme_mode_builder.dart';
+import '../common/global_builder.dart';
 import 'widgets/task_grid_view.dart';
 
 class TasksPage extends StatelessWidget {
@@ -69,7 +69,7 @@ class TasksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = AppIntl.of(context);
-    return ThemeModeBuilder(
+    return GlobalBuilder(
       builder: (themeState) {
         return ConstrainedBox(
           constraints: const BoxConstraints(

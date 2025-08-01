@@ -10,7 +10,9 @@ import '../../domain/use_case/categories/create_category_use_case.dart';
 import '../../domain/use_case/categories/delete_category_use_case.dart';
 import '../../domain/use_case/categories/edit_category_use_case.dart';
 import '../../domain/use_case/categories/get_categories_use_case.dart';
+import '../../domain/use_case/local/get_locale_use_case.dart';
 import '../../domain/use_case/local/get_theme_mode_use_case.dart';
+import '../../domain/use_case/local/set_locale_use_case.dart';
 import '../../domain/use_case/local/set_theme_mode_use_case.dart';
 import '../../domain/use_case/tasks/create_task_use_case.dart';
 import '../../domain/use_case/tasks/delete_media_use_case.dart';
@@ -22,10 +24,10 @@ import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/categories/categories_bloc.dart';
 import '../bloc/categories/categories_event.dart';
+import '../bloc/global/global_bloc.dart';
 import '../bloc/task_form/task_form_bloc.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../bloc/tasks/tasks_event.dart';
-import '../bloc/theme/app_theme_bloc.dart';
 
 abstract class PresentationDI {
   static void getIt() {
@@ -37,9 +39,11 @@ abstract class PresentationDI {
         ),
       )
       ..registerFactory(
-        () => AppThemeBloc(
+        () => GlobalBloc(
           getThemeModeUseCase: getIt.get<GetThemeModeUseCase>(),
           setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
+          getLocaleUseCase: getIt.get<GetLocaleUseCase>(),
+          setLocaleUseCase: getIt.get<SetLocaleUseCase>(),
         ),
       )
       ..registerFactory(

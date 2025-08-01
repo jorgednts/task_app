@@ -2,10 +2,10 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/theme/app_theme_bloc.dart';
-import '../../bloc/theme/app_theme_event.dart';
+import '../../bloc/global/global_bloc.dart';
+import '../../bloc/global/global_event.dart';
 import '../../constants/image_constants.dart';
-import 'theme_mode_builder.dart';
+import 'global_builder.dart';
 
 class CommonTopMenu extends StatelessWidget {
   const CommonTopMenu({
@@ -45,13 +45,27 @@ class CommonTopMenu extends StatelessWidget {
                   spacing: Spacing.small,
                   children: [
                     Flexible(
-                      child: ThemeModeBuilder(
+                      child: GlobalBuilder(
                         builder: (state) => IconButton.filledTonal(
-                          onPressed: () => context.read<AppThemeBloc>().add(
+                          onPressed: () => context.read<GlobalBloc>().add(
+                            ChangeLocale(locale: state.inverseLocale),
+                          ),
+                          icon: FittedBox(
+                            child: StyledText.l1(state.localeName),
+                          ),
+                          tooltip: 'Toggle language',
+                          iconSize: IconSize.small,
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: GlobalBuilder(
+                        builder: (state) => IconButton.filledTonal(
+                          onPressed: () => context.read<GlobalBloc>().add(
                             const SwitchThemeMode(),
                           ),
                           icon: Icon(state.icon),
-                          tooltip: 'Toggle theme (${state.displayName})',
+                          tooltip: 'Toggle global (${state.displayName})',
                           iconSize: IconSize.small,
                         ),
                       ),

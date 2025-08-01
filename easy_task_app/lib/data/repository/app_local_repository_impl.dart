@@ -27,4 +27,21 @@ class AppLocalRepositoryImpl implements AppLocalRepository {
       );
     }
   }
+
+  @override
+  Locale getLocale() {
+    return _appLocalDataSource.getLocale();
+  }
+
+  @override
+  AsyncResult<void> setLocale({required Locale locale}) async {
+    try {
+      _appLocalDataSource.setLocale(locale: locale);
+      return const Result.ok(null);
+    } catch (e) {
+      return Result.error(
+        GenericException(message: e.toString()),
+      );
+    }
+  }
 }

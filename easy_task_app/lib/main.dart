@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internationalization/internationalization.dart';
 
-import 'presentation/bloc/theme/app_theme_bloc.dart';
-import 'presentation/bloc/theme/app_theme_event.dart';
-import 'presentation/bloc/theme/app_theme_state.dart';
+import 'presentation/bloc/global/global_bloc.dart';
+import 'presentation/bloc/global/global_event.dart';
+import 'presentation/bloc/global/global_state.dart';
 import 'presentation/navigation/easy_task_router.dart';
 import 'presentation/utils/app_initializer.dart';
 
@@ -22,14 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GetIt.instance.get<AppThemeBloc>()..add(const LoadTheme()),
-      child: BlocBuilder<AppThemeBloc, AppThemeState>(
+      create: (context) => GetIt.instance.get<GlobalBloc>()
+        ..add(const LoadTheme())
+        ..add(const LoadLocale()),
+      child: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           themeMode: state.themeMode,
           theme: CustomTheme.fromContext(context).light(),
           darkTheme: CustomTheme.fromContext(context).dark(),
+          locale: state.locale,
           localizationsDelegates: [
             AppIntl.delegate,
             GlobalMaterialLocalizations.delegate,

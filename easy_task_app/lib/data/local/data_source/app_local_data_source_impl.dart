@@ -65,4 +65,31 @@ class AppLocalDataSourceImpl implements AppLocalDataSource {
         return ThemeMode.system;
     }
   }
+
+  @override
+  Locale getLocale() {
+    try {
+      final localeString = _sharedPreferences.getString(
+        SharedPreferencesConstants.localeKey,
+      );
+      if (localeString != null) {
+        return Locale(localeString);
+      }
+      return const Locale('en');
+    } catch (e) {
+      return const Locale('en');
+    }
+  }
+
+  @override
+  Future<void> setLocale({required Locale locale}) async {
+    try {
+      await _sharedPreferences.setString(
+        SharedPreferencesConstants.localeKey,
+        locale.languageCode,
+      );
+    } catch (e) {
+      throw CacheException(message: 'Failed to set locale: $e');
+    }
+  }
 }

@@ -13,7 +13,9 @@ import '../use_case/categories/create_category_use_case.dart';
 import '../use_case/categories/delete_category_use_case.dart';
 import '../use_case/categories/edit_category_use_case.dart';
 import '../use_case/categories/get_categories_use_case.dart';
+import '../use_case/local/get_locale_use_case.dart';
 import '../use_case/local/get_theme_mode_use_case.dart';
+import '../use_case/local/set_locale_use_case.dart';
 import '../use_case/local/set_theme_mode_use_case.dart';
 import '../use_case/tasks/create_task_use_case.dart';
 import '../use_case/tasks/delete_media_use_case.dart';
@@ -37,6 +39,16 @@ abstract class DomainDI {
       )
       ..registerFactory<SetThemeModeUseCase>(
         () => SetThemeModeUseCase(
+          appLocalRepository: appLocalRepository,
+        ),
+      )
+      ..registerFactory<GetLocaleUseCase>(
+        () => GetLocaleUseCase(
+          appLocalRepository: appLocalRepository,
+        ),
+      )
+      ..registerFactory<SetLocaleUseCase>(
+        () => SetLocaleUseCase(
           appLocalRepository: appLocalRepository,
         ),
       )
