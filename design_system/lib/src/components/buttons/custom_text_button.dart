@@ -8,11 +8,13 @@ class CustomTextButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.isBold = false,
+    this.fontColor
   });
 
   final String label;
   final VoidCallback? onPressed;
   final bool isBold;
+  final Color? fontColor;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CustomTextButton extends StatelessWidget {
         child: StyledText.l3(
           label,
           isBold: isBold,
+          fontColor: fontColor,
         ),
       ),
     );

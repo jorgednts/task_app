@@ -32,12 +32,14 @@ class TasksPage extends StatelessWidget {
   }) async {
     final bloc = context.read<TasksBloc>();
     final result = await context.navigateToTaskFormPage(easyTaskModel: task);
-    if (context.mounted && (result ?? false)) {
-      ScaffoldMessengerHandler.showSuccessSnackBar(
-        context,
-        message: AppIntl.of(context).common_success_message,
-        title: AppIntl.of(context).common_success_title,
-      );
+    if (context.mounted) {
+      if(result == true) {
+        ScaffoldMessengerHandler.showSuccessSnackBar(
+          context,
+          message: AppIntl.of(context).common_success_message,
+          title: AppIntl.of(context).common_success_title,
+        );
+      }
       bloc.add(
         const InitializeTasks(
           filtersParams: GetTasksFiltersParams(),

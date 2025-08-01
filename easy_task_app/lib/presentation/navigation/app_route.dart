@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import '../../domain/model/user/easy_task_user_model.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/categories/categories_bloc.dart';
 import '../bloc/task_form/task_form_bloc.dart';
+import '../bloc/task_form/task_form_event.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../ui/auth/auth_page.dart';
 import '../ui/categories/categories_page.dart';
@@ -99,16 +101,19 @@ final class TaskFormRoute extends AppRoute {
     path: path,
     name: name,
     builder: (context, state) {
+      final task = state.uri.queryParameters.isEmpty
+          ? null
+          : EasyTaskModel.fromQuery(
+              state.uri.queryParameters,
+            );
       return BlocProvider<TaskFormBloc>(
-      create: (_) => GetIt.instance.get<TaskFormBloc>(),
-      child: TaskFormPage(
-        task: state.uri.queryParameters.isEmpty
-            ? null
-            : EasyTaskModel.fromQuery(
-                state.uri.queryParameters,
-              ),
-      ),
-    );
+        create: (_) =>
+            GetIt.instance.get<TaskFormBloc>()
+              ..add(GetCategoriesTaskForm(categories: [], task: task)),
+        child: TaskFormPage(
+          mediaService: GetIt.instance.get<MediaController>(),
+        ),
+      );
     },
   );
 }

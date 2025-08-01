@@ -16,8 +16,10 @@ import '../use_case/categories/get_categories_use_case.dart';
 import '../use_case/local/get_theme_mode_use_case.dart';
 import '../use_case/local/set_theme_mode_use_case.dart';
 import '../use_case/tasks/create_task_use_case.dart';
+import '../use_case/tasks/delete_media_use_case.dart';
 import '../use_case/tasks/delete_task_use_case.dart';
 import '../use_case/tasks/edit_task_use_case.dart';
+import '../use_case/tasks/get_task_by_id_use_case.dart';
 import '../use_case/tasks/get_tasks_use_case.dart';
 
 abstract class DomainDI {
@@ -101,6 +103,16 @@ abstract class DomainDI {
       ..registerFactory<DeleteCategoryUseCase>(
         () => DeleteCategoryUseCase(
           categoriesRepository: categoriesRepository,
+        ),
+      )
+      ..registerFactory<DeleteMediaUseCase>(
+        () => DeleteMediaUseCase(
+          tasksRepository: tasksRepository,
+        ),
+      )
+      ..registerFactory<GetTaskByIdUseCase>(
+        () => GetTaskByIdUseCase(
+          tasksRepository: tasksRepository,
         ),
       );
   }

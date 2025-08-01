@@ -128,14 +128,31 @@ class MessageLookup extends MessageLookupByLibrary {
       "Operação concluída com sucesso",
     ),
     "common_success_title": MessageLookupByLibrary.simpleMessage("Sucesso! :)"),
+    "tasks_add_media": MessageLookupByLibrary.simpleMessage("Adicionar mídia"),
+    "tasks_capture": MessageLookupByLibrary.simpleMessage("Capturar"),
     "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
       "+ Adicionar categoria",
     ),
     "tasks_category_label": MessageLookupByLibrary.simpleMessage("Categoria"),
-    "tasks_category_loading_message": MessageLookupByLibrary.simpleMessage(
-      "Carregando categorias...",
+    "tasks_choose_from_gallery": MessageLookupByLibrary.simpleMessage(
+      "Selecionar da sua galeria",
+    ),
+    "tasks_choose_photo_title": MessageLookupByLibrary.simpleMessage(
+      "Escolher foto",
+    ),
+    "tasks_choose_video_title": MessageLookupByLibrary.simpleMessage(
+      "Escolher vídeo",
     ),
     "tasks_create_title": MessageLookupByLibrary.simpleMessage("Criar Tarefa"),
+    "tasks_create_with_error": MessageLookupByLibrary.simpleMessage(
+      "A tarefa foi criada com sucesso, porém houve erro no upload das mídias. Mas não se preocupe, você pode tentar inserir novamente editando a tarefa ;)",
+    ),
+    "tasks_create_with_error_title": MessageLookupByLibrary.simpleMessage(
+      "Aviso!",
+    ),
+    "tasks_current_media_title": MessageLookupByLibrary.simpleMessage(
+      "Mídias salvas",
+    ),
     "tasks_delete_title": MessageLookupByLibrary.simpleMessage(
       "Deletar Tarefa",
     ),
@@ -149,6 +166,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Data de vencimento",
     ),
     "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Editar Tarefa"),
+    "tasks_gallery": MessageLookupByLibrary.simpleMessage("Galeria"),
+    "tasks_loading_message": MessageLookupByLibrary.simpleMessage(
+      "Carregando dados, aguarde...",
+    ),
+    "tasks_new_media_title": MessageLookupByLibrary.simpleMessage(
+      "Novas mídias",
+    ),
+    "tasks_record_video_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Gravar um novo vídeo",
+    ),
+    "tasks_record_video_title": MessageLookupByLibrary.simpleMessage(
+      "Gravar vídeo",
+    ),
+    "tasks_save_changes": MessageLookupByLibrary.simpleMessage(
+      "Salvar Alterações",
+    ),
     "tasks_search_label": MessageLookupByLibrary.simpleMessage(
       "Buscar Tarefas",
     ),
@@ -158,5 +191,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tasks_status_label": MessageLookupByLibrary.simpleMessage("Status"),
     "tasks_status_to_do": MessageLookupByLibrary.simpleMessage("A fazer"),
+    "tasks_take_photo_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Capturar nova foto",
+    ),
+    "tasks_take_photo_title": MessageLookupByLibrary.simpleMessage(
+      "Tirar foto",
+    ),
   };
 }

@@ -1,3 +1,5 @@
+import 'package:core/core.dart';
+
 import '../easy_task_category_model.dart';
 import '../easy_task_media_item_model.dart';
 import '../task_status.dart';
@@ -10,7 +12,8 @@ class EditTaskParams {
     required this.dueDate,
     required this.category,
     required this.status,
-    required this.media,
+    required this.newMedia,
+    required this.currentMedia,
   });
 
   final String id;
@@ -19,10 +22,10 @@ class EditTaskParams {
   final DateTime dueDate;
   final EasyTaskCategoryModel? category;
   final EasyTaskStatus status;
-  final List<EasyTaskMediaItemModel> media;
+  final List<MediaFile> newMedia;
+  final List<EasyTaskMediaItemModel> currentMedia;
 
   Map<String, dynamic> toQuery() {
-    //TODO: implement media upload
     final result = {
       'id': id,
       'title': title,

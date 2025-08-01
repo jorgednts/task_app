@@ -1,33 +1,39 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:internationalization/internationalization.dart';
 
 import '../../../../domain/model/tasks/easy_task_category_model.dart';
-import '../../../../domain/model/tasks/easy_task_model.dart';
+import '../../../../domain/model/tasks/easy_task_media_item_model.dart';
 import '../../../../domain/model/tasks/params/create_task_params.dart';
+import '../../../../domain/model/tasks/params/delete_media_params.dart';
 import '../../../../domain/model/tasks/params/edit_task_params.dart';
 import '../../../../domain/model/tasks/task_status.dart';
 import '../../../bloc/task_form/task_form_state.dart';
 import '../../../utils/form_field_validators.dart';
 import '../../tasks/widgets/categories_selector.dart';
+import 'task_media_picker.dart';
+import 'task_media_viewer.dart';
 
 class TaskForm extends StatefulWidget {
   const TaskForm({
     super.key,
-    this.task,
     required this.onAddCategory,
     required this.onCreateTask,
     required this.onEditTask,
     required this.onDeleteTask,
     required this.state,
+    required this.mediaService,
+    required this.onDeleteMedia,
   });
 
-  final EasyTaskModel? task;
   final VoidCallback onAddCategory;
   final void Function(CreateTaskParams params) onCreateTask;
   final void Function(EditTaskParams params) onEditTask;
   final void Function(String id) onDeleteTask;
   final TaskFormState state;
+  final MediaController mediaService;
+  final void Function(DeleteMediaParams params) onDeleteMedia;
 
   @override
   State<TaskForm> createState() => _TaskFormState();
@@ -39,6 +45,8 @@ class _TaskFormState extends State<TaskForm> {
   DateTime selectedDate = DateTime.now().add(const Duration(days: 1));
   late EasyTaskStatus selectedStatus;
   EasyTaskCategoryModel? selectedCategory;
+  final media = <MediaFile>[];
+  final currentMedia = <EasyTaskMediaItemModel>[];
 
   @override
   void initState() {
@@ -47,13 +55,22 @@ class _TaskFormState extends State<TaskForm> {
   }
 
   void initFields() {
-    nameController = TextEditingController(text: widget.task?.title);
+    nameController = TextEditingController(text: widget.state.task?.title);
     descriptionController = TextEditingController(
-      text: widget.task?.description,
+      text: widget.state.task?.description,
     );
     setState(() {
-      selectedCategory = widget.task?.category;
-      selectedStatus = widget.task?.status ?? EasyTaskStatus.toDo;
+      selectedCategory = widget.state.task?.category;
+      selectedStatus = widget.state.task?.status ?? EasyTaskStatus.toDo;
+      currentMedia.addAll(widget.state.task?.media ?? []);
+    });
+  }
+
+  void updateMediaList(MediaFile? file) {
+    setState(() {
+      if (file != null) {
+        media.add(file);
+      }
     });
   }
 
@@ -62,6 +79,35 @@ class _TaskFormState extends State<TaskForm> {
     nameController.dispose();
     descriptionController.dispose();
     super.dispose();
+  }
+
+  void onPressedButton() {
+    if (widget.state.task == null) {
+      widget.onCreateTask(
+        CreateTaskParams(
+          title: nameController.text,
+          description: descriptionController.text,
+          dueDate: selectedDate,
+          category: selectedCategory,
+          status: selectedStatus,
+          currentMedia: [],
+          newMedia: media,
+        ),
+      );
+    } else {
+      widget.onEditTask(
+        EditTaskParams(
+          id: widget.state.task!.id,
+          title: nameController.text,
+          description: descriptionController.text,
+          dueDate: selectedDate,
+          category: selectedCategory,
+          status: selectedStatus,
+          newMedia: media,
+          currentMedia: currentMedia,
+        ),
+      );
+    }
   }
 
   @override
@@ -123,6 +169,46 @@ class _TaskFormState extends State<TaskForm> {
                             },
                             onAddCategory: widget.onAddCategory,
                           ),
+                    if (currentMedia.isNotEmpty) ...[
+                      TaskMediaViewer(
+                        label: strings.tasks_current_media_title,
+                        onDeleteItem: (index) => widget.onDeleteMedia(
+                          DeleteMediaParams(
+                            taskId: widget.state.task!.id,
+                            fileName: currentMedia[index].fileName,
+                            currentMedia: currentMedia,
+                          ),
+                        ),
+                        media: (currentMedia)
+                            .map(
+                              (e) => MediaViewerType.fromUrl(
+                                e.url,
+                                isImage: e.isImage,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ],
+                    if (media.isNotEmpty) ...[
+                      TaskMediaViewer(
+                        label: strings.tasks_new_media_title,
+                        onDeleteItem: (index) {
+                          setState(() => media.removeAt(index));
+                        },
+                        media: media
+                            .map(
+                              (e) => MediaViewerType.fromPath(
+                                e.path,
+                                isImage: e.isImage,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ],
+                    TaskMediaPicker(
+                      onSelectFile: updateMediaList,
+                      mediaService: widget.mediaService,
+                    ),
                     CustomTextFormField(
                       label: strings.tasks_description_label,
                       maxLines: 3,
@@ -138,48 +224,24 @@ class _TaskFormState extends State<TaskForm> {
                 spacing: Spacing.small,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  widget.task == null
+                  widget.state.task == null
                       ? const Spacer()
                       : Flexible(
                           child: CustomTextButton(
                             label: strings.tasks_delete_title,
                             onPressed: () =>
-                                widget.onDeleteTask(widget.task!.id),
+                                widget.onDeleteTask(widget.state.task!.id),
                             isBold: true,
                           ),
                         ),
                   Flexible(
                     child: CustomFilledButton(
-                      label: widget.task == null
+                      label: widget.state.task == null
                           ? strings.tasks_create_title
-                          : strings.tasks_edit_title,
+                          : strings.tasks_save_changes,
                       onPressed: () {
                         if (formKey.currentState?.validate() ?? false) {
-                          // TODO: Implement task creation and editing category and media
-                          if (widget.task == null) {
-                            widget.onCreateTask(
-                              CreateTaskParams(
-                                title: nameController.text,
-                                description: descriptionController.text,
-                                dueDate: selectedDate,
-                                category: selectedCategory,
-                                status: selectedStatus,
-                                media: [],
-                              ),
-                            );
-                          } else {
-                            widget.onEditTask(
-                              EditTaskParams(
-                                id: widget.task!.id,
-                                title: nameController.text,
-                                description: descriptionController.text,
-                                dueDate: selectedDate,
-                                category: selectedCategory,
-                                status: selectedStatus,
-                                media: [],
-                              ),
-                            );
-                          }
+                          onPressedButton();
                         }
                       },
                     ),

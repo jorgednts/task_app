@@ -16,20 +16,32 @@ class EasyTaskModel {
   });
 
   factory EasyTaskModel.fromQuery(Map<String, dynamic> query) {
+    final mediaJson = query['media'];
+    final mediaItems = <EasyTaskMediaItemModel>[];
+
+    if (mediaJson != null && mediaJson.toString().isNotEmpty) {
+      final decoded = jsonDecode(mediaJson) as List;
+      mediaItems.addAll(
+        decoded.map(
+          (e) => EasyTaskMediaItemModel.fromQuery(e as Map<String, dynamic>),
+        ),
+      );
+    }
     return EasyTaskModel(
       id: query['id'],
       title: query['title'],
       description: query['description'],
       dueDate: DateTime.parse(query['due_date']),
-      category: query['category'] != null && query['category'].toString().isNotEmpty
+      category:
+          query['category'] != null && query['category'].toString().isNotEmpty
           ? EasyTaskCategoryModel.fromQuery(
-        jsonDecode(query['category']) as Map<String, dynamic>,
-      )
+              jsonDecode(query['category']) as Map<String, dynamic>,
+            )
           : null,
       status: EasyTaskStatus.values.firstWhere(
-            (status) => status.name == query['status'],
+        (status) => status.name == query['status'],
       ),
-      media: [],
+      media: mediaItems,
     );
   }
 
@@ -49,6 +61,9 @@ class EasyTaskModel {
       'due_date': dueDate.toIso8601String(),
       'category': category != null ? jsonEncode(category!.toQuery()) : null,
       'status': status.name,
+      'media': media.isNotEmpty
+          ? jsonEncode(media.map((m) => m.toQuery()).toList())
+          : null,
     };
   }
 }

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../domain/model/tasks/params/get_tasks_filter_params.dart';
@@ -12,15 +13,16 @@ import '../../domain/use_case/categories/get_categories_use_case.dart';
 import '../../domain/use_case/local/get_theme_mode_use_case.dart';
 import '../../domain/use_case/local/set_theme_mode_use_case.dart';
 import '../../domain/use_case/tasks/create_task_use_case.dart';
+import '../../domain/use_case/tasks/delete_media_use_case.dart';
 import '../../domain/use_case/tasks/delete_task_use_case.dart';
 import '../../domain/use_case/tasks/edit_task_use_case.dart';
+import '../../domain/use_case/tasks/get_task_by_id_use_case.dart';
 import '../../domain/use_case/tasks/get_tasks_use_case.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/categories/categories_bloc.dart';
 import '../bloc/categories/categories_event.dart';
 import '../bloc/task_form/task_form_bloc.dart';
-import '../bloc/task_form/task_form_event.dart';
 import '../bloc/tasks/tasks_bloc.dart';
 import '../bloc/tasks/tasks_event.dart';
 import '../bloc/theme/app_theme_bloc.dart';
@@ -29,6 +31,11 @@ abstract class PresentationDI {
   static void getIt() {
     final getIt = GetIt.instance;
     getIt
+      ..registerSingleton<MediaController>(
+        MediaControllerImpl(
+          logger: getIt.get<LoggerService>(),
+        ),
+      )
       ..registerFactory(
         () => AppThemeBloc(
           getThemeModeUseCase: getIt.get<GetThemeModeUseCase>(),
@@ -65,7 +72,9 @@ abstract class PresentationDI {
           createTaskUseCase: getIt.get<CreateTaskUseCase>(),
           editTaskUseCase: getIt.get<EditTaskUseCase>(),
           deleteTaskUseCase: getIt.get<DeleteTaskUseCase>(),
-        )..add(const GetCategoriesTaskForm(categories: [])),
+          deleteMediaUseCase: getIt.get<DeleteMediaUseCase>(),
+          getTaskByIdUseCase: getIt.get<GetTaskByIdUseCase>(),
+        ),
       );
   }
 }

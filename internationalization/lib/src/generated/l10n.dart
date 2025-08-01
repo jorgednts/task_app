@@ -399,6 +399,16 @@ class AppIntl {
     );
   }
 
+  /// `Save Changes`
+  String get tasks_save_changes {
+    return Intl.message(
+      'Save Changes',
+      name: 'tasks_save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delete Task`
   String get tasks_delete_title {
     return Intl.message(
@@ -439,11 +449,11 @@ class AppIntl {
     );
   }
 
-  /// `Loading categories...`
-  String get tasks_category_loading_message {
+  /// `Loading data, please wait...`
+  String get tasks_loading_message {
     return Intl.message(
-      'Loading categories...',
-      name: 'tasks_category_loading_message',
+      'Loading data, please wait...',
+      name: 'tasks_loading_message',
       desc: '',
       args: [],
     );
@@ -504,6 +514,136 @@ class AppIntl {
     return Intl.message(
       'Search Tasks',
       name: 'tasks_search_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add media`
+  String get tasks_add_media {
+    return Intl.message(
+      'Add media',
+      name: 'tasks_add_media',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capture`
+  String get tasks_capture {
+    return Intl.message('Capture', name: 'tasks_capture', desc: '', args: []);
+  }
+
+  /// `Gallery`
+  String get tasks_gallery {
+    return Intl.message('Gallery', name: 'tasks_gallery', desc: '', args: []);
+  }
+
+  /// `Take photo`
+  String get tasks_take_photo_title {
+    return Intl.message(
+      'Take photo',
+      name: 'tasks_take_photo_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capture new photo`
+  String get tasks_take_photo_subtitle {
+    return Intl.message(
+      'Capture new photo',
+      name: 'tasks_take_photo_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose photo`
+  String get tasks_choose_photo_title {
+    return Intl.message(
+      'Choose photo',
+      name: 'tasks_choose_photo_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Record video`
+  String get tasks_record_video_title {
+    return Intl.message(
+      'Record video',
+      name: 'tasks_record_video_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Record a new video`
+  String get tasks_record_video_subtitle {
+    return Intl.message(
+      'Record a new video',
+      name: 'tasks_record_video_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose video`
+  String get tasks_choose_video_title {
+    return Intl.message(
+      'Choose video',
+      name: 'tasks_choose_video_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from your gallery`
+  String get tasks_choose_from_gallery {
+    return Intl.message(
+      'Select from your gallery',
+      name: 'tasks_choose_from_gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning!`
+  String get tasks_create_with_error_title {
+    return Intl.message(
+      'Warning!',
+      name: 'tasks_create_with_error_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The task was created successfully, but there was an error uploading the media. But don't worry, you can try inserting it again by editing the task ;)`
+  String get tasks_create_with_error {
+    return Intl.message(
+      'The task was created successfully, but there was an error uploading the media. But don\'t worry, you can try inserting it again by editing the task ;)',
+      name: 'tasks_create_with_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saved media`
+  String get tasks_current_media_title {
+    return Intl.message(
+      'Saved media',
+      name: 'tasks_current_media_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New media`
+  String get tasks_new_media_title {
+    return Intl.message(
+      'New media',
+      name: 'tasks_new_media_title',
       desc: '',
       args: [],
     );

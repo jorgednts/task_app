@@ -131,14 +131,31 @@ class MessageLookup extends MessageLookupByLibrary {
       "Operation completed successfully",
     ),
     "common_success_title": MessageLookupByLibrary.simpleMessage("Success! :)"),
+    "tasks_add_media": MessageLookupByLibrary.simpleMessage("Add media"),
+    "tasks_capture": MessageLookupByLibrary.simpleMessage("Capture"),
     "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
       "+ Add category",
     ),
     "tasks_category_label": MessageLookupByLibrary.simpleMessage("Category"),
-    "tasks_category_loading_message": MessageLookupByLibrary.simpleMessage(
-      "Loading categories...",
+    "tasks_choose_from_gallery": MessageLookupByLibrary.simpleMessage(
+      "Select from your gallery",
+    ),
+    "tasks_choose_photo_title": MessageLookupByLibrary.simpleMessage(
+      "Choose photo",
+    ),
+    "tasks_choose_video_title": MessageLookupByLibrary.simpleMessage(
+      "Choose video",
     ),
     "tasks_create_title": MessageLookupByLibrary.simpleMessage("Create Task"),
+    "tasks_create_with_error": MessageLookupByLibrary.simpleMessage(
+      "The task was created successfully, but there was an error uploading the media. But don\'t worry, you can try inserting it again by editing the task ;)",
+    ),
+    "tasks_create_with_error_title": MessageLookupByLibrary.simpleMessage(
+      "Warning!",
+    ),
+    "tasks_current_media_title": MessageLookupByLibrary.simpleMessage(
+      "Saved media",
+    ),
     "tasks_delete_title": MessageLookupByLibrary.simpleMessage("Delete Task"),
     "tasks_description_empty_error": MessageLookupByLibrary.simpleMessage(
       "Description is required",
@@ -148,6 +165,18 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tasks_due_date": MessageLookupByLibrary.simpleMessage("Due date"),
     "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Edit Task"),
+    "tasks_gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+    "tasks_loading_message": MessageLookupByLibrary.simpleMessage(
+      "Loading data, please wait...",
+    ),
+    "tasks_new_media_title": MessageLookupByLibrary.simpleMessage("New media"),
+    "tasks_record_video_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Record a new video",
+    ),
+    "tasks_record_video_title": MessageLookupByLibrary.simpleMessage(
+      "Record video",
+    ),
+    "tasks_save_changes": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "tasks_search_label": MessageLookupByLibrary.simpleMessage("Search Tasks"),
     "tasks_status_done": MessageLookupByLibrary.simpleMessage("Done"),
     "tasks_status_in_progress": MessageLookupByLibrary.simpleMessage(
@@ -155,5 +184,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tasks_status_label": MessageLookupByLibrary.simpleMessage("Status"),
     "tasks_status_to_do": MessageLookupByLibrary.simpleMessage("To do"),
+    "tasks_take_photo_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Capture new photo",
+    ),
+    "tasks_take_photo_title": MessageLookupByLibrary.simpleMessage(
+      "Take photo",
+    ),
   };
 }
