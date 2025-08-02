@@ -60,7 +60,7 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
       label: widget.label,
       enabled: widget.enabled,
       decoration: InputDecoration(
-        labelText: widget.label,
+        hint: StyledText.l3(widget.label),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(RadiusSize.large),
         ),

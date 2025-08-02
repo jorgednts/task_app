@@ -75,7 +75,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               widget.decoration ??
               InputDecoration(
                 constraints: widget.constraints,
-                labelText: widget.label,
+                hint: StyledText.l3(widget.label),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(RadiusSize.large),
                 ),

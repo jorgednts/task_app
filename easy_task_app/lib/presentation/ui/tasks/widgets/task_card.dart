@@ -71,11 +71,28 @@ class TaskCard extends StatelessWidget {
                             .withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(RadiusSize.small),
                       ),
-                      child: StyledText.b1(
-                        task.category!.name,
-                        fontColor: task.category!.color.materialColor(theme),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                      child: Row(
+                        spacing: Spacing.extraSmall,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FittedBox(
+                            child: Icon(
+                              Icons.style_rounded,
+                              size: IconSize.extraSmall,
+                              color: task.category!.color.materialColor(theme),
+                            ),
+                          ),
+                          Flexible(
+                            child: StyledText.b1(
+                              task.category!.name,
+                              fontColor: task.category!.color.materialColor(
+                                theme,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
