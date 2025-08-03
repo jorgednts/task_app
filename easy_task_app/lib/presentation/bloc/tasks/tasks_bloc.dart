@@ -73,10 +73,15 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       },
       onError: (error) {
         emit(
-          TasksListState.error(
-            tasks: [],
-            currentQuery: event.filtersParams.query,
-          ),
+          error is NetworkException
+              ? TasksListState.networkError(
+                  tasks: [],
+                  currentQuery: event.filtersParams.query,
+                )
+              : TasksListState.genericError(
+                  tasks: [],
+                  currentQuery: event.filtersParams.query,
+                ),
         );
       },
     );

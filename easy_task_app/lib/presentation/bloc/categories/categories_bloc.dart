@@ -46,7 +46,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         emit(CategoriesListSuccessState(categories: result));
       },
       onError: (error) {
-        emit(CategoryErrorState(categories: state.categories));
+        emit(
+          CategoryErrorState(
+            categories: state.categories,
+            exception: error,
+          ),
+        );
       },
     );
   }
@@ -61,7 +66,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         emit(CategorySuccessState(categories: state.categories));
       },
       onError: (error) {
-        emit(CategoryErrorState(categories: state.categories));
+        emit(
+          CategoryErrorState(
+            categories: state.categories,
+            exception: error,
+          ),
+        );
       },
     );
   }
@@ -76,7 +86,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         emit(CategorySuccessState(categories: state.categories));
       },
       onError: (error) {
-        emit(CategoryErrorState(categories: state.categories));
+        emit(
+          CategoryErrorState(
+            categories: state.categories,
+            exception: error,
+          ),
+        );
       },
     );
   }
@@ -91,7 +106,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         emit(CategorySuccessState(categories: state.categories));
       },
       onError: (error) {
-        emit(CategoryErrorState(categories: state.categories));
+        emit(
+          CategoryErrorState(
+            categories: state.categories,
+            exception: error,
+          ),
+        );
       },
     );
   }

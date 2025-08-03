@@ -42,7 +42,7 @@ class TaskForm extends StatefulWidget {
 class _TaskFormState extends State<TaskForm> {
   late TextEditingController nameController, descriptionController;
   final formKey = GlobalKey<FormState>();
-  DateTime selectedDate = DateTime.now().add(const Duration(days: 1));
+  late DateTime selectedDate;
   late EasyTaskStatus selectedStatus;
   EasyTaskCategoryModel? selectedCategory;
   final media = <MediaFile>[];
@@ -60,6 +60,9 @@ class _TaskFormState extends State<TaskForm> {
       text: widget.state.task?.description,
     );
     setState(() {
+      selectedDate =
+          widget.state.task?.dueDate ??
+          DateTime.now().add(const Duration(days: 1));
       selectedCategory = widget.state.task?.category;
       selectedStatus = widget.state.task?.status ?? EasyTaskStatus.toDo;
       currentMedia.addAll(widget.state.task?.media ?? []);
@@ -138,9 +141,8 @@ class _TaskFormState extends State<TaskForm> {
                       ),
                     ),
                     CustomDatePicker(
-                      onDateSelected: (date) {
-                        setState(() => selectedDate = date);
-                      },
+                      onDateSelected: (date) =>
+                          setState(() => selectedDate = date),
                       label: DateFormat.yMMMd().format(selectedDate),
                       title: strings.tasks_due_date,
                       initialDate: selectedDate,
@@ -164,9 +166,8 @@ class _TaskFormState extends State<TaskForm> {
                         : CategoriesSelector(
                             selectedCategory: selectedCategory,
                             categories: widget.state.categories,
-                            onChanged: (selected) {
-                              setState(() => selectedCategory = selected);
-                            },
+                            onChanged: (selected) =>
+                                setState(() => selectedCategory = selected),
                             onAddCategory: widget.onAddCategory,
                           ),
                     if (currentMedia.isNotEmpty) ...[

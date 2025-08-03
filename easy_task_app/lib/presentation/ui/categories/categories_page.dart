@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,14 @@ class CategoriesPage extends StatelessWidget {
     }
   }
 
+  void handleError(BuildContext context, String message) {
+    ScaffoldMessengerHandler.showErrorSnackBar(
+      context,
+      title: AppIntl.of(context).common_error_title,
+      message: message,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final strings = AppIntl.of(context);
@@ -61,10 +70,11 @@ class CategoriesPage extends StatelessWidget {
       body: BlocConsumer<CategoriesBloc, CategoriesState>(
         listener: (context, state) {
           if (state is CategoryErrorState) {
-            ScaffoldMessengerHandler.showErrorSnackBar(
+            handleError(
               context,
-              title: strings.common_error_title,
-              message: strings.common_error_message,
+              state.exception is NetworkException
+                  ? strings.common_error_network
+                  : strings.common_error_message,
             );
           } else if (state is CategorySuccessState) {
             ScaffoldMessengerHandler.showSuccessSnackBar(

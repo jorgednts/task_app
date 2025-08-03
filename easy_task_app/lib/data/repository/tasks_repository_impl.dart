@@ -10,10 +10,12 @@ import '../../domain/repository/tasks_repository.dart';
 import '../mapper/easy_task_mapper.dart';
 import '../remote/data_source/tasks/tasks_remote_data_source.dart';
 import '../remote/model/task/easy_task_media_item_response.dart';
+import '../remote/model/task/easy_task_response.dart';
 
-class TasksRepositoryImpl implements TasksRepository {
+class TasksRepositoryImpl extends BaseRepository implements TasksRepository {
   TasksRepositoryImpl({
     required TasksRemoteDataSource remoteDataSource,
+    required super.networkService,
   }) : _remoteDataSource = remoteDataSource;
   final TasksRemoteDataSource _remoteDataSource;
 
@@ -22,7 +24,14 @@ class TasksRepositoryImpl implements TasksRepository {
     required GetTasksFiltersParams filtersParams,
   }) async {
     try {
-      final tasks = await _remoteDataSource.getTasks(filters: filtersParams);
+      final tasks =
+          await checkInternetConnectionAndExecute<
+            GetTasksFiltersParams,
+            List<EasyTaskResponse>
+          >(
+            input: filtersParams,
+            execute: (input) => _remoteDataSource.getTasks(filters: input),
+          );
       return Result.ok(tasks.map((e) => e.toModel()).toList());
     } on CustomException catch (e) {
       return Result.error(e);
@@ -36,9 +45,16 @@ class TasksRepositoryImpl implements TasksRepository {
     required CreateTaskParams params,
   }) async {
     try {
-      final response = await _remoteDataSource.createTask(
-        params: params.toQuery(),
-      );
+      final response =
+          await checkInternetConnectionAndExecute<
+            CreateTaskParams,
+            EasyTaskResponse
+          >(
+            input: params,
+            execute: (input) => _remoteDataSource.createTask(
+              params: input.toQuery(),
+            ),
+          );
       return Result.ok(response.toModel());
     } on CustomException catch (e) {
       return Result.error(e);
@@ -50,7 +66,11 @@ class TasksRepositoryImpl implements TasksRepository {
   @override
   AsyncResult<void> updateTask({required EditTaskParams params}) async {
     try {
-      await _remoteDataSource.updateTask(params: params.toQuery());
+      await checkInternetConnectionAndExecute<EditTaskParams, void>(
+        input: params,
+        execute: (input) =>
+            _remoteDataSource.updateTask(params: input.toQuery()),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -62,7 +82,10 @@ class TasksRepositoryImpl implements TasksRepository {
   @override
   AsyncResult<void> deleteTask({required String id}) async {
     try {
-      await _remoteDataSource.deleteTask(id: id);
+      await checkInternetConnectionAndExecute<String, void>(
+        input: id,
+        execute: (input) => _remoteDataSource.deleteTask(id: input),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -76,7 +99,15 @@ class TasksRepositoryImpl implements TasksRepository {
     required UploadMediaParams params,
   }) async {
     try {
-      final response = await _remoteDataSource.uploadMediaFiles(params: params);
+      final response =
+          await checkInternetConnectionAndExecute<
+            UploadMediaParams,
+            List<EasyTaskMediaItemResponse>
+          >(
+            input: params,
+            execute: (input) =>
+                _remoteDataSource.uploadMediaFiles(params: input),
+          );
       return Result.ok(response);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -88,7 +119,10 @@ class TasksRepositoryImpl implements TasksRepository {
   @override
   AsyncResult<void> deleteMediaFile({required DeleteMediaParams params}) async {
     try {
-      await _remoteDataSource.deleteMediaFile(params: params);
+      await checkInternetConnectionAndExecute<DeleteMediaParams, void>(
+        input: params,
+        execute: (input) => _remoteDataSource.deleteMediaFile(params: input),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -100,7 +134,11 @@ class TasksRepositoryImpl implements TasksRepository {
   @override
   AsyncResult<EasyTaskModel> getTaskById({required String id}) async {
     try {
-      final response = await _remoteDataSource.getTaskById(taskId: id);
+      final response =
+          await checkInternetConnectionAndExecute<String, EasyTaskResponse>(
+            input: id,
+            execute: (input) => _remoteDataSource.getTaskById(taskId: input),
+          );
       return Result.ok(response.toModel());
     } on CustomException catch (e) {
       return Result.error(e);

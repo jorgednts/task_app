@@ -67,7 +67,7 @@ class AuthPage extends StatelessWidget {
                   case AuthNetworkError():
                     handleError(
                       context,
-                      AppIntl.of(context).auth_error_network,
+                      AppIntl.of(context).common_error_network,
                     );
                     break;
                   case AuthGenericError():

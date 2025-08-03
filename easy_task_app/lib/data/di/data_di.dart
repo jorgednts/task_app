@@ -28,6 +28,9 @@ abstract class DataDI {
       ..registerSingleton<LoggerService>(
         LoggerServiceImpl(),
       )
+      ..registerSingleton<NetworkService>(
+        NetworkServiceImpl(),
+      )
       ..registerSingleton<AppLocalDataSource>(
         AppLocalDataSourceImpl(
           sharedPreferences: sharedPreferences,
@@ -59,16 +62,19 @@ abstract class DataDI {
       ..registerSingleton<AuthRepository>(
         AuthRepositoryImpl(
           remoteDataSource: getIt.get<AuthRemoteDataSource>(),
+          networkService: getIt.get<NetworkService>(),
         ),
       )
       ..registerSingleton<TasksRepository>(
         TasksRepositoryImpl(
           remoteDataSource: getIt.get<TasksRemoteDataSource>(),
+          networkService: getIt.get<NetworkService>(),
         ),
       )
       ..registerSingleton<CategoriesRepository>(
         CategoriesRepositoryImpl(
           remoteDataSource: getIt.get<CategoriesRemoteDataSource>(),
+          networkService: getIt.get<NetworkService>(),
         ),
       );
   }

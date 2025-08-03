@@ -19,7 +19,7 @@ class TaskFormPage extends StatelessWidget {
 
   final MediaController mediaService;
 
-  void _showError(BuildContext context) {
+  void _showError(BuildContext context, bool isNetwork) {
     final strings = AppIntl.of(context);
     return ScaffoldMessengerHandler.showErrorSnackBar(
       context,
@@ -61,8 +61,10 @@ class TaskFormPage extends StatelessWidget {
                   },
                 );
               }
-            case TaskFormStateType.error:
-              _showError(context);
+            case TaskFormStateType.genericError:
+              _showError(context, false);
+            case TaskFormStateType.networkError:
+              _showError(context, true);
           }
         } else if (state is TaskFormDeleteState) {
           switch (state.type) {
@@ -70,8 +72,10 @@ class TaskFormPage extends StatelessWidget {
               break;
             case TaskFormStateType.success:
               context.pop(true);
-            case TaskFormStateType.error:
-              _showError(context);
+            case TaskFormStateType.genericError:
+              _showError(context, false);
+            case TaskFormStateType.networkError:
+              _showError(context, true);
           }
         } else if (state is MediaDeleteState) {
           switch (state.type) {
@@ -84,8 +88,10 @@ class TaskFormPage extends StatelessWidget {
                 );
               }
               _showSuccess(context);
-            case TaskFormStateType.error:
-              _showError(context);
+            case TaskFormStateType.genericError:
+              _showError(context, false);
+            case TaskFormStateType.networkError:
+              _showError(context, true);
           }
         }
       },

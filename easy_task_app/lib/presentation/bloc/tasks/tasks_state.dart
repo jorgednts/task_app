@@ -1,6 +1,6 @@
 import '../../../domain/model/tasks/easy_task_model.dart';
 
-enum TasksStateType { initial, loading, success, error }
+enum TasksStateType { initial, loading, success, genericError, networkError }
 
 sealed class TasksState {
   const TasksState({
@@ -25,7 +25,7 @@ class TasksSignOutState extends TasksState {
 
   const TasksSignOutState.error({
     required super.tasks,
-  }) : super(stateType: TasksStateType.error);
+  }) : super(stateType: TasksStateType.genericError);
 }
 
 class TasksListState extends TasksState {
@@ -60,14 +60,23 @@ class TasksListState extends TasksState {
          currentQuery: currentQuery,
        );
 
-  const TasksListState.error({
-    List<EasyTaskModel> tasks = const [],
+  const TasksListState.genericError({
+    required List<EasyTaskModel> tasks,
     required String currentQuery,
   }) : this(
          tasks: tasks,
-         stateType: TasksStateType.error,
+         stateType: TasksStateType.genericError,
          currentQuery: currentQuery,
        );
+
+  const TasksListState.networkError({
+    required List<EasyTaskModel> tasks,
+    required String currentQuery,
+  }) : this(
+    tasks: tasks,
+    stateType: TasksStateType.networkError,
+    currentQuery: currentQuery,
+  );
 
   const TasksListState({
     required super.tasks,

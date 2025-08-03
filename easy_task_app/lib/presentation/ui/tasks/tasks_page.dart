@@ -33,7 +33,7 @@ class TasksPage extends StatelessWidget {
     final bloc = context.read<TasksBloc>();
     final result = await context.navigateToTaskFormPage(easyTaskModel: task);
     if (context.mounted) {
-      if(result == true) {
+      if (result == true) {
         ScaffoldMessengerHandler.showSuccessSnackBar(
           context,
           message: AppIntl.of(context).common_success_message,
@@ -50,7 +50,13 @@ class TasksPage extends StatelessWidget {
 
   void blocConsumerListener(BuildContext context, TasksState state) {
     final strings = AppIntl.of(context);
-    if (state.stateType == TasksStateType.error) {
+    if (state.stateType == TasksStateType.networkError) {
+      ScaffoldMessengerHandler.showErrorSnackBar(
+        context,
+        title: strings.common_error_title,
+        message: strings.common_error_network,
+      );
+    } else if (state.stateType == TasksStateType.genericError) {
       ScaffoldMessengerHandler.showErrorSnackBar(
         context,
         title: strings.common_error_title,

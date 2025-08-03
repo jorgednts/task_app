@@ -6,10 +6,13 @@ import '../../domain/model/tasks/params/edit_category_params.dart';
 import '../../domain/repository/categories_repository.dart';
 import '../mapper/easy_task_mapper.dart';
 import '../remote/data_source/categories/categories_remote_data_source.dart';
+import '../remote/model/task/easy_task_category_response.dart';
 
-class CategoriesRepositoryImpl implements CategoriesRepository {
+class CategoriesRepositoryImpl extends BaseRepository
+    implements CategoriesRepository {
   CategoriesRepositoryImpl({
     required CategoriesRemoteDataSource remoteDataSource,
+    required super.networkService,
   }) : _remoteDataSource = remoteDataSource;
 
   final CategoriesRemoteDataSource _remoteDataSource;
@@ -17,7 +20,14 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   @override
   AsyncResult<List<EasyTaskCategoryModel>> getCategories() async {
     try {
-      final categories = await _remoteDataSource.getCategories();
+      final categories =
+          await checkInternetConnectionAndExecute<
+            void,
+            List<EasyTaskCategoryResponse>
+          >(
+            input: null,
+            execute: (_) => _remoteDataSource.getCategories(),
+          );
       return Result.ok(categories.map((e) => e.toModel()).toList());
     } on CustomException catch (e) {
       return Result.error(e);
@@ -31,7 +41,11 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
     required CreateCategoryParams params,
   }) async {
     try {
-      await _remoteDataSource.createCategory(params: params.toQuery());
+      await checkInternetConnectionAndExecute<CreateCategoryParams, void>(
+        input: params,
+        execute: (input) =>
+            _remoteDataSource.createCategory(params: input.toQuery()),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -45,7 +59,11 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
     required EditCategoryParams params,
   }) async {
     try {
-      await _remoteDataSource.updateCategory(params: params.toQuery());
+      await checkInternetConnectionAndExecute<EditCategoryParams, void>(
+        input: params,
+        execute: (input) =>
+            _remoteDataSource.updateCategory(params: input.toQuery()),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);
@@ -59,7 +77,11 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
     required String categoryId,
   }) async {
     try {
-      await _remoteDataSource.deleteCategory(categoryId: categoryId);
+      await checkInternetConnectionAndExecute<String, void>(
+        input: categoryId,
+        execute: (input) =>
+            _remoteDataSource.deleteCategory(categoryId: input),
+      );
       return const Result.ok(null);
     } on CustomException catch (e) {
       return Result.error(e);

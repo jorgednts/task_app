@@ -1,7 +1,7 @@
 import '../../../domain/model/tasks/easy_task_category_model.dart';
 import '../../../domain/model/tasks/easy_task_model.dart';
 
-enum TaskFormStateType { loading, success, error }
+enum TaskFormStateType { loading, success, genericError, networkError }
 
 sealed class TaskFormState {
   const TaskFormState({
@@ -38,7 +38,12 @@ class CategoryListState extends TaskFormState {
   const CategoryListState.error({
     super.categories = const [],
     super.task,
-  }) : super(type: TaskFormStateType.error);
+  }) : super(type: TaskFormStateType.genericError);
+
+  const CategoryListState.networkError({
+    super.categories = const [],
+    super.task,
+  }) : super(type: TaskFormStateType.networkError);
 }
 
 class TaskFormOperationState extends TaskFormState {
@@ -58,7 +63,13 @@ class TaskFormOperationState extends TaskFormState {
     required super.categories,
     required super.task,
   }) : uploaded = false,
-       super(type: TaskFormStateType.error);
+       super(type: TaskFormStateType.genericError);
+
+  const TaskFormOperationState.networkError({
+    required super.categories,
+    required super.task,
+  }) : uploaded = false,
+       super(type: TaskFormStateType.networkError);
 
   final bool uploaded;
 }
@@ -77,7 +88,12 @@ class TaskFormDeleteState extends TaskFormState {
   const TaskFormDeleteState.error({
     required super.categories,
     required super.task,
-  }) : super(type: TaskFormStateType.error);
+  }) : super(type: TaskFormStateType.genericError);
+
+  const TaskFormDeleteState.networkError({
+    required super.categories,
+    required super.task,
+  }) : super(type: TaskFormStateType.networkError);
 }
 
 class MediaDeleteState extends TaskFormState {
@@ -94,7 +110,12 @@ class MediaDeleteState extends TaskFormState {
   const MediaDeleteState.error({
     required super.categories,
     required super.task,
-  }) : super(type: TaskFormStateType.error);
+  }) : super(type: TaskFormStateType.genericError);
+
+  const MediaDeleteState.networkError({
+    required super.categories,
+    required super.task,
+  }) : super(type: TaskFormStateType.networkError);
 }
 
 class TaskFormUpdate extends TaskFormState {
@@ -111,5 +132,10 @@ class TaskFormUpdate extends TaskFormState {
   const TaskFormUpdate.error({
     required super.categories,
     required super.task,
-  }) : super(type: TaskFormStateType.error);
+  }) : super(type: TaskFormStateType.genericError);
+
+  const TaskFormUpdate.networkError({
+    required super.categories,
+    required super.task,
+  }) : super(type: TaskFormStateType.networkError);
 }

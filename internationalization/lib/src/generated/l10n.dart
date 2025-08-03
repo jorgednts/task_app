@@ -144,6 +144,16 @@ class AppIntl {
     );
   }
 
+  /// `Check your internet connection and try again.`
+  String get common_error_network {
+    return Intl.message(
+      'Check your internet connection and try again.',
+      name: 'common_error_network',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign Up`
   String get auth_sign_up_label {
     return Intl.message(
@@ -304,16 +314,6 @@ class AppIntl {
     return Intl.message(
       'Name can only contain letters, spaces, hyphens, and apostrophes',
       name: 'auth_validator_name_invalid_error',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Check your internet connection and try again.`
-  String get auth_error_network {
-    return Intl.message(
-      'Check your internet connection and try again.',
-      name: 'auth_error_network',
       desc: '',
       args: [],
     );

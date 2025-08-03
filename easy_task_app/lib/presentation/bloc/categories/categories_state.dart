@@ -1,3 +1,5 @@
+import 'package:core/core.dart';
+
 import '../../../domain/model/tasks/easy_task_category_model.dart';
 
 sealed class CategoriesState {
@@ -23,7 +25,16 @@ class CategoriesListLoadingState extends CategoriesState {
 }
 
 class CategoryErrorState extends CategoriesState {
-  const CategoryErrorState({required super.categories});
+  const CategoryErrorState({
+    required super.categories,
+    required this.exception,
+  });
+
+  final CustomException exception;
+}
+
+class CategoryNetworkErrorState extends CategoriesState {
+  const CategoryNetworkErrorState({required super.categories});
 }
 
 class CategoriesListErrorState extends CategoriesState {

@@ -39,9 +39,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
       "Invalid email or password. Please check your credentials and try again.",
     ),
-    "auth_error_network": MessageLookupByLibrary.simpleMessage(
-      "Check your internet connection and try again.",
-    ),
     "auth_error_weak_password": MessageLookupByLibrary.simpleMessage(
       "Please choose a stronger password.",
     ),
@@ -119,6 +116,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_color": MessageLookupByLibrary.simpleMessage("Color"),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again",
+    ),
+    "common_error_network": MessageLookupByLibrary.simpleMessage(
+      "Check your internet connection and try again.",
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Hello"),

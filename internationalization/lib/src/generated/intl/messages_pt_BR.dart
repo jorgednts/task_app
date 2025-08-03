@@ -39,9 +39,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "auth_error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
       "E-mail ou senha inválidos. Verifique suas credenciais e tente novamente.",
     ),
-    "auth_error_network": MessageLookupByLibrary.simpleMessage(
-      "Verifique sua conexão com a internet e tente novamente.",
-    ),
     "auth_error_weak_password": MessageLookupByLibrary.simpleMessage(
       "Por favor, escolha uma senha mais forte.",
     ),
@@ -116,6 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_color": MessageLookupByLibrary.simpleMessage("Cor"),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Algo deu errado, tente novamente",
+    ),
+    "common_error_network": MessageLookupByLibrary.simpleMessage(
+      "Verifique sua conexão com a internet e tente novamente.",
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Olá"),
