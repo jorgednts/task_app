@@ -8,16 +8,20 @@ import '../../domain/model/tasks/params/get_tasks_filter_params.dart';
 import '../../domain/model/tasks/params/upload_media_params.dart';
 import '../../domain/repository/tasks_repository.dart';
 import '../mapper/easy_task_mapper.dart';
+import '../remote/data_source/tasks/media_remote_data_source.dart';
 import '../remote/data_source/tasks/tasks_remote_data_source.dart';
 import '../remote/model/task/easy_task_media_item_response.dart';
 import '../remote/model/task/easy_task_response.dart';
 
 class TasksRepositoryImpl extends BaseRepository implements TasksRepository {
   TasksRepositoryImpl({
-    required TasksRemoteDataSource remoteDataSource,
+    required TasksRemoteDataSource taskRemoteDataSource,
+    required MediaRemoteDataSource mediaRemoteDataSource,
     required super.networkService,
-  }) : _remoteDataSource = remoteDataSource;
+  }) : _remoteDataSource = taskRemoteDataSource,
+       _mediaRemoteDataSource = mediaRemoteDataSource;
   final TasksRemoteDataSource _remoteDataSource;
+  final MediaRemoteDataSource _mediaRemoteDataSource;
 
   @override
   AsyncResult<List<EasyTaskModel>> getAllTasks({
@@ -106,7 +110,7 @@ class TasksRepositoryImpl extends BaseRepository implements TasksRepository {
           >(
             input: params,
             execute: (input) =>
-                _remoteDataSource.uploadMediaFiles(params: input),
+                _mediaRemoteDataSource.uploadMediaFiles(params: input),
           );
       return Result.ok(response);
     } on CustomException catch (e) {
@@ -121,7 +125,8 @@ class TasksRepositoryImpl extends BaseRepository implements TasksRepository {
     try {
       await checkInternetConnectionAndExecute<DeleteMediaParams, void>(
         input: params,
-        execute: (input) => _remoteDataSource.deleteMediaFile(params: input),
+        execute: (input) =>
+            _mediaRemoteDataSource.deleteMediaFile(params: input),
       );
       return const Result.ok(null);
     } on CustomException catch (e) {

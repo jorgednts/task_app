@@ -13,6 +13,8 @@ import '../remote/data_source/auth/auth_remote_data_source.dart';
 import '../remote/data_source/auth/auth_remote_data_source_impl.dart';
 import '../remote/data_source/categories/categories_remote_data_source.dart';
 import '../remote/data_source/categories/categories_remote_data_source_impl.dart';
+import '../remote/data_source/tasks/media_remote_data_source.dart';
+import '../remote/data_source/tasks/media_remote_data_source_impl.dart';
 import '../remote/data_source/tasks/tasks_remote_data_source.dart';
 import '../remote/data_source/tasks/tasks_remote_data_source_impl.dart';
 import '../repository/app_local_repository_impl.dart';
@@ -48,6 +50,12 @@ abstract class DataDI {
           logger: getIt.get<LoggerService>(),
         ),
       )
+      ..registerSingleton<MediaRemoteDataSource>(
+        MediaRemoteDataSourceImpl(
+          supabaseClient: Supabase.instance.client,
+          logger: getIt.get<LoggerService>(),
+        ),
+      )
       ..registerSingleton<CategoriesRemoteDataSource>(
         CategoriesRemoteDataSourceImpl(
           supabaseClient: Supabase.instance.client,
@@ -67,7 +75,8 @@ abstract class DataDI {
       )
       ..registerSingleton<TasksRepository>(
         TasksRepositoryImpl(
-          remoteDataSource: getIt.get<TasksRemoteDataSource>(),
+          taskRemoteDataSource: getIt.get<TasksRemoteDataSource>(),
+          mediaRemoteDataSource: getIt.get<MediaRemoteDataSource>(),
           networkService: getIt.get<NetworkService>(),
         ),
       )

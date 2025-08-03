@@ -106,29 +106,31 @@ class CategoriesPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Wrap(
-                              spacing: Spacing.medium,
-                              runSpacing: Spacing.medium,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              alignment: WrapAlignment.start,
-                              children: List.generate(
-                                state.categories.length,
-                                (index) {
-                                  return SizedBox(
-                                    width: min(
-                                      MediaQuery.sizeOf(context).width,
-                                      WidthResponsiveBreakpoints.small / 2,
-                                    ),
-                                    child: CategoryCard(
-                                      category: state.categories[index],
-                                      onTap: () => handleCategoriesOperation(
-                                        context,
-                                        state,
-                                        category: state.categories[index],
+                            child: SingleChildScrollView(
+                              child: Wrap(
+                                spacing: Spacing.medium,
+                                runSpacing: Spacing.medium,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                alignment: WrapAlignment.start,
+                                children: List.generate(
+                                  state.categories.length,
+                                  (index) {
+                                    return SizedBox(
+                                      width: min(
+                                        MediaQuery.sizeOf(context).width,
+                                        WidthResponsiveBreakpoints.small / 2,
                                       ),
-                                    ),
-                                  );
-                                },
+                                      child: CategoryCard(
+                                        category: state.categories[index],
+                                        onTap: () => handleCategoriesOperation(
+                                          context,
+                                          state,
+                                          category: state.categories[index],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
