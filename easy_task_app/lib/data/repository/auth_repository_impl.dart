@@ -19,7 +19,7 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
 
   @override
   AsyncResult<EasyTaskUserModel> registerUser({
-    required RegisterUserParams registerRequest,
+    required RegisterUserParams registerParams,
   }) async {
     try {
       final user =
@@ -27,9 +27,9 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
             RegisterUserParams,
             EasyTaskUserResponse
           >(
-            input: registerRequest,
+            input: registerParams,
             execute: (input) =>
-                _remoteDataSource.registerUser(registerRequest: input),
+                _remoteDataSource.registerUser(registerParams: input),
           );
       return Result.ok(user.toModel());
     } on CustomException catch (e) {

@@ -1,5 +1,7 @@
-class EasyTaskUserModel {
-  EasyTaskUserModel({
+import 'package:equatable/equatable.dart';
+
+class EasyTaskUserModel extends Equatable {
+  const EasyTaskUserModel({
     required this.id,
     required this.name,
     required this.email,
@@ -24,4 +26,7 @@ class EasyTaskUserModel {
       'email': email,
     };
   }
+
+  @override
+  List<Object?> get props => [id, name, email];
 }

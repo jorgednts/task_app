@@ -1,5 +1,7 @@
-class EasyTaskMediaItemModel {
-  EasyTaskMediaItemModel({
+import 'package:equatable/equatable.dart';
+
+class EasyTaskMediaItemModel extends Equatable {
+  const EasyTaskMediaItemModel({
     required this.type,
     required this.url,
   });
@@ -24,4 +26,7 @@ class EasyTaskMediaItemModel {
       'url': url,
     };
   }
+
+  @override
+  List<Object?> get props => [type, url];
 }

@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 import 'easy_task_category_model.dart';
 import 'easy_task_media_item_model.dart';
 import 'task_status.dart';
 
-class EasyTaskModel {
-  EasyTaskModel({
+class EasyTaskModel extends Equatable {
+  const EasyTaskModel({
     required this.id,
     required this.title,
     required this.description,
@@ -66,4 +68,7 @@ class EasyTaskModel {
           : null,
     };
   }
+
+  @override
+  List<Object?> get props => [id];
 }

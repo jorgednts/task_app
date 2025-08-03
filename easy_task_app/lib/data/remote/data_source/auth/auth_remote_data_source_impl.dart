@@ -18,13 +18,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<EasyTaskUserResponse> registerUser({
-    required RegisterUserParams registerRequest,
+    required RegisterUserParams registerParams,
   }) async {
     try {
       final response = await _supabaseClient.auth.signUp(
-        email: registerRequest.email,
-        password: registerRequest.password,
-        data: registerRequest.toUserData(),
+        email: registerParams.email,
+        password: registerParams.password,
+        data: registerParams.toUserData(),
       );
 
       if (response.user == null) {

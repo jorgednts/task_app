@@ -6,7 +6,7 @@ import '../../model/user/sign_in_params.dart';
 
 abstract class AuthRemoteDataSource {
   Future<EasyTaskUserResponse> registerUser({
-    required RegisterUserParams registerRequest,
+    required RegisterUserParams registerParams,
   });
 
   Future<EasyTaskUserResponse?> getCurrentUser();

@@ -14,6 +14,6 @@ class RegisterUserUseCase
 
   @override
   AsyncResult<EasyTaskUserModel> call(RegisterUserParams input) async {
-    return await _authRepository.registerUser(registerRequest: input);
+    return await _authRepository.registerUser(registerParams: input);
   }
 }

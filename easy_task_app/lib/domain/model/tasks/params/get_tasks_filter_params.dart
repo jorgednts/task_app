@@ -1,4 +1,6 @@
-class GetTasksFiltersParams {
+import 'package:equatable/equatable.dart';
+
+class GetTasksFiltersParams extends Equatable {
   const GetTasksFiltersParams({
     this.query = '',
     this.limit = 25,
@@ -24,4 +26,7 @@ class GetTasksFiltersParams {
     }
     return result;
   }
+
+  @override
+  List<Object?> get props => [query, limit, offset];
 }

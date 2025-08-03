@@ -7,7 +7,7 @@ import '../model/user/easy_task_user_model.dart';
 
 abstract class AuthRepository {
   AsyncResult<EasyTaskUserModel> registerUser({
-    required RegisterUserParams registerRequest,
+    required RegisterUserParams registerParams,
   });
 
   AsyncResult<EasyTaskUserModel?> getCurrentUser();
