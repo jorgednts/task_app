@@ -15,6 +15,9 @@ jobs:
         with:
           flutter-version: '3.32.5'
 
+      - name: Install melos
+        run: dart pub global activate melos
+
       - name: Install dependencies
         run: melos pub:get
 
