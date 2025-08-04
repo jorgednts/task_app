@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: melos pub:get
 
+      - name: Navigate to app directory
+        run: cd easy_task_app
+
       - name: Build APK
         run: flutter build apk --debug --dart-define=SUPABASE_URL=https://nzjojzchnyihkehntoxw.supabase.co --dart-define=SUPABASE_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56am9qemNobnlpaGtlaG50b3h3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM1MjM3MjYsImV4cCI6MjA2OTA5OTcyNn0.Ned5voI11QDLjinkMgw00Gb3jMi731_cXr_IBAmkdCs
 
