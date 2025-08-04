@@ -1,0 +1,17 @@
+core:
+  - core/lib/**/*
+
+design_system:
+  - design_system/lib/**/*
+
+easy_task_app:
+  - easy_task_app/lib/**/*
+
+internationalization:
+  - internationalization/lib/**/*
+
+CI/CD:
+  - .github/workflows/**/*
+
+docs:
+  - README.md
