@@ -1,1 +1,1 @@
-# task_app
+# easy_task_app

@@ -1,6 +1,5 @@
 library;
 
-/// Components
 export 'src/components/components.dart';
 
 /// Theme
