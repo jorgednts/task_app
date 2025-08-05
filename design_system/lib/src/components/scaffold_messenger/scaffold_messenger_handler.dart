@@ -74,12 +74,18 @@ abstract class ScaffoldMessengerHandler {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        behavior: SnackBarBehavior.floating,
         duration: duration ?? const Duration(seconds: 4),
         closeIconColor:
             contentColor ?? Theme.of(context).colorScheme.onSurfaceVariant,
         backgroundColor:
             backgroundColor ??
             Theme.of(context).colorScheme.surfaceContainerHighest,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(RadiusSize.medium),
+        ),
+        dismissDirection: DismissDirection.horizontal,
+        margin: const EdgeInsets.symmetric(horizontal: Spacing.small),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
