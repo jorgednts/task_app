@@ -7,25 +7,45 @@ sealed class TasksState {
     required this.stateType,
     required this.tasks,
     this.currentQuery = '',
+    required this.hasMore,
+    required this.isPaginating,
   });
 
   final TasksStateType stateType;
   final List<EasyTaskModel> tasks;
   final String currentQuery;
+  final bool hasMore;
+  final bool isPaginating;
 }
 
 class TasksSignOutState extends TasksState {
   const TasksSignOutState.loading({
     required super.tasks,
+    required super.currentQuery,
+    required super.hasMore,
+    required super.isPaginating,
   }) : super(stateType: TasksStateType.loading);
 
   const TasksSignOutState.success({
     required super.tasks,
+    required super.currentQuery,
+    required super.hasMore,
+    required super.isPaginating,
   }) : super(stateType: TasksStateType.success);
 
   const TasksSignOutState.error({
     required super.tasks,
+    required super.currentQuery,
+    required super.hasMore,
+    required super.isPaginating,
   }) : super(stateType: TasksStateType.genericError);
+
+  const TasksSignOutState.networkError({
+    required super.tasks,
+    required super.currentQuery,
+    required super.hasMore,
+    required super.isPaginating,
+  }) : super(stateType: TasksStateType.networkError);
 }
 
 class TasksListState extends TasksState {
@@ -73,21 +93,18 @@ class TasksListState extends TasksState {
     required List<EasyTaskModel> tasks,
     required String currentQuery,
   }) : this(
-    tasks: tasks,
-    stateType: TasksStateType.networkError,
-    currentQuery: currentQuery,
-  );
+         tasks: tasks,
+         stateType: TasksStateType.networkError,
+         currentQuery: currentQuery,
+       );
 
   const TasksListState({
     required super.tasks,
     required super.stateType,
     required super.currentQuery,
-    this.hasMore = true,
-    this.isPaginating = false,
+    super.hasMore = true,
+    super.isPaginating = false,
   });
-
-  final bool hasMore;
-  final bool isPaginating;
 
   TasksListState copyWith({
     List<EasyTaskModel>? tasks,

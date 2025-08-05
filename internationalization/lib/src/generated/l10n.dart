@@ -154,6 +154,56 @@ class AppIntl {
     );
   }
 
+  /// `Empty List`
+  String get common_empty_title {
+    return Intl.message(
+      'Empty List',
+      name: 'common_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get common_try_again {
+    return Intl.message(
+      'Try Again',
+      name: 'common_try_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get common_logout_title {
+    return Intl.message(
+      'Logout',
+      name: 'common_logout_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Toggle language`
+  String get common_toggle_language {
+    return Intl.message(
+      'Toggle language',
+      name: 'common_toggle_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Toggle Theme (current: {currentThemeMode})`
+  String common_toggle_theme(String currentThemeMode) {
+    return Intl.message(
+      'Toggle Theme (current: $currentThemeMode)',
+      name: 'common_toggle_theme',
+      desc: 'Button text to toggle theme with current theme mode',
+      args: [currentThemeMode],
+    );
+  }
+
   /// `Sign Up`
   String get auth_sign_up_label {
     return Intl.message(
@@ -644,6 +694,16 @@ class AppIntl {
     return Intl.message(
       'New media',
       name: 'tasks_new_media_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No tasks found. Click the button below and add a new one!`
+  String get tasks_empty_message {
+    return Intl.message(
+      'No tasks found. Click the button below and add a new one!',
+      name: 'tasks_empty_message',
       desc: '',
       args: [],
     );

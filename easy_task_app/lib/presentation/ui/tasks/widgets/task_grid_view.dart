@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:internationalization/internationalization.dart';
 
 import '../../../../domain/model/tasks/easy_task_model.dart';
+import '../../../bloc/tasks/tasks_state.dart';
 import 'task_card.dart';
 
 class TaskGridView extends StatefulWidget {
@@ -14,6 +16,8 @@ class TaskGridView extends StatefulWidget {
     this.onLoadMore,
     this.isPaginating = false,
     this.hasMore = true,
+    this.stateType = TasksStateType.success,
+    this.onRetry,
   });
 
   final List<EasyTaskModel> tasks;
@@ -21,6 +25,8 @@ class TaskGridView extends StatefulWidget {
   final VoidCallback? onLoadMore;
   final bool isPaginating;
   final bool hasMore;
+  final TasksStateType stateType;
+  final VoidCallback? onRetry;
 
   @override
   State<TaskGridView> createState() => _TaskGridViewState();
@@ -38,7 +44,10 @@ class _TaskGridViewState extends State<TaskGridView> {
   void _onScroll() {
     if (_controller.position.pixels >=
         _controller.position.maxScrollExtent - 200) {
-      if (widget.onLoadMore != null && widget.hasMore && !widget.isPaginating) {
+      if (widget.onLoadMore != null &&
+          widget.hasMore &&
+          !widget.isPaginating &&
+          !_hasError) {
         widget.onLoadMore!();
       }
     }
@@ -50,8 +59,14 @@ class _TaskGridViewState extends State<TaskGridView> {
     super.dispose();
   }
 
+  bool get _hasError =>
+      widget.stateType == TasksStateType.networkError ||
+      widget.stateType == TasksStateType.genericError;
+
   @override
   Widget build(BuildContext context) {
+    final strings = AppIntl.of(context);
+
     return SingleChildScrollView(
       controller: _controller,
       child: Column(
@@ -83,7 +98,29 @@ class _TaskGridViewState extends State<TaskGridView> {
               );
             },
           ),
-          if (widget.isPaginating) const CircularProgressIndicator(),
+          if (widget.isPaginating)
+            const CircularProgressIndicator()
+          else if (_hasError && widget.onRetry != null) ...[
+            StyledText.b2(
+              strings.common_error_message,
+              isBold: true,
+            ),
+            FilledButton(
+              onPressed: widget.onLoadMore,
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll<Color>(
+                  Theme.of(context).colorScheme.onErrorContainer,
+                ),
+              ),
+              child: FittedBox(
+                child: StyledText.b2(
+                  strings.common_try_again,
+                  isBold: true,
+                  fontColor: Theme.of(context).colorScheme.errorContainer,
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

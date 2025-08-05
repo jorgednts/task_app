@@ -1,14 +1,15 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internationalization/internationalization.dart';
 
-import '../../bloc/global/global_bloc.dart';
-import '../../bloc/global/global_event.dart';
-import '../../constants/image_constants.dart';
-import 'global_builder.dart';
+import '../../../bloc/global/global_bloc.dart';
+import '../../../bloc/global/global_event.dart';
+import '../../../constants/image_constants.dart';
+import '../../common/global_builder.dart';
 
-class CommonTopMenu extends StatelessWidget {
-  const CommonTopMenu({
+class TasksTopMenu extends StatelessWidget {
+  const TasksTopMenu({
     super.key,
     required this.username,
     required this.onLogoutPressed,
@@ -21,6 +22,7 @@ class CommonTopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppIntl.of(context);
     return SizedBox(
       height: kToolbarHeight,
       child: LayoutBuilder(
@@ -53,7 +55,7 @@ class CommonTopMenu extends StatelessWidget {
                           icon: FittedBox(
                             child: StyledText.l1(state.localeName),
                           ),
-                          tooltip: 'Toggle language',
+                          tooltip: strings.common_toggle_language,
                           iconSize: IconSize.small,
                         ),
                       ),
@@ -65,7 +67,9 @@ class CommonTopMenu extends StatelessWidget {
                             const SwitchThemeMode(),
                           ),
                           icon: Icon(state.icon),
-                          tooltip: 'Toggle global (${state.displayName})',
+                          tooltip: AppIntl.of(
+                            context,
+                          ).common_toggle_theme(state.displayName),
                           iconSize: IconSize.small,
                         ),
                       ),
@@ -75,6 +79,7 @@ class CommonTopMenu extends StatelessWidget {
                         onPressed: onCategoriesPressed,
                         icon: const Icon(Icons.style),
                         iconSize: IconSize.small,
+                        tooltip: strings.categories_title,
                       ),
                     ),
                     Flexible(
@@ -82,6 +87,7 @@ class CommonTopMenu extends StatelessWidget {
                         onPressed: onLogoutPressed,
                         icon: const Icon(Icons.logout),
                         iconSize: IconSize.small,
+                        tooltip: strings.common_logout_title,
                       ),
                     ),
                   ],

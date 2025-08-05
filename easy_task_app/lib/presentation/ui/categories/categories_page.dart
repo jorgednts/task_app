@@ -90,16 +90,29 @@ class CategoriesPage extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: state is CategoriesListLoadingState
+                child:
+                    state is CategoriesListLoadingState ||
+                        state is CategoryLoadingState
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : (state is CategoriesListSuccessState &&
                           state.categories.isEmpty)
                     ? Center(
-                        child: StyledText.t2(
-                          strings.categories_empty_message,
-                          isBold: true,
+                        child: CustomMessageCard(
+                          message: strings.categories_empty_message,
+                          title: strings.common_empty_title,
+                        ),
+                      )
+                    : state is CategoriesListErrorState
+                    ? Center(
+                        child: CustomMessageCard.error(
+                          message: strings.common_error_message,
+                          title: strings.common_error_title,
+                          onPressed: () => context.read<CategoriesBloc>().add(
+                            const InitCategories(),
+                          ),
+                          buttonLabel: strings.common_try_again,
                         ),
                       )
                     : Column(

@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(currentThemeMode) =>
+      "Toggle Theme (current: ${currentThemeMode})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "app_name": MessageLookupByLibrary.simpleMessage("EasyTask"),
@@ -114,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Clear search",
     ),
     "common_color": MessageLookupByLibrary.simpleMessage("Color"),
+    "common_empty_title": MessageLookupByLibrary.simpleMessage("Empty List"),
     "common_error_message": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again",
     ),
@@ -122,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "common_error_title": MessageLookupByLibrary.simpleMessage("Oops! :("),
     "common_hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "common_logout_title": MessageLookupByLibrary.simpleMessage("Logout"),
     "common_name_empty_error": MessageLookupByLibrary.simpleMessage(
       "Name is required",
     ),
@@ -131,6 +136,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Operation completed successfully",
     ),
     "common_success_title": MessageLookupByLibrary.simpleMessage("Success! :)"),
+    "common_toggle_language": MessageLookupByLibrary.simpleMessage(
+      "Toggle language",
+    ),
+    "common_toggle_theme": m0,
+    "common_try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
     "tasks_add_media": MessageLookupByLibrary.simpleMessage("Add media"),
     "tasks_capture": MessageLookupByLibrary.simpleMessage("Capture"),
     "tasks_category_add_message": MessageLookupByLibrary.simpleMessage(
@@ -165,6 +175,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tasks_due_date": MessageLookupByLibrary.simpleMessage("Due date"),
     "tasks_edit_title": MessageLookupByLibrary.simpleMessage("Edit Task"),
+    "tasks_empty_message": MessageLookupByLibrary.simpleMessage(
+      "No tasks found. Click the button below and add a new one!",
+    ),
     "tasks_gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
     "tasks_loading_message": MessageLookupByLibrary.simpleMessage(
       "Loading data, please wait...",

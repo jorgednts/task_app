@@ -34,19 +34,40 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   Future<void> _onSignOut(SignOut event, Emitter<TasksState> emit) async {
     emit(
-      TasksSignOutState.loading(tasks: state.tasks),
+      TasksSignOutState.loading(
+        tasks: state.tasks,
+        currentQuery: state.currentQuery,
+        hasMore: state.hasMore,
+        isPaginating: state.isPaginating,
+      ),
     );
-    (await _signOutUseCase.call(
-      NoParam(),
-    )).fold(
+
+    (await _signOutUseCase.call(NoParam())).fold(
       onOk: (result) {
         emit(
-          TasksSignOutState.success(tasks: state.tasks),
+          TasksSignOutState.success(
+            tasks: state.tasks,
+            currentQuery: state.currentQuery,
+            hasMore: state.hasMore,
+            isPaginating: state.isPaginating,
+          ),
         );
       },
       onError: (error) {
         emit(
-          TasksSignOutState.error(tasks: state.tasks),
+          error is NetworkException
+              ? TasksSignOutState.networkError(
+                  tasks: state.tasks,
+                  currentQuery: state.currentQuery,
+                  hasMore: state.hasMore,
+                  isPaginating: state.isPaginating,
+                )
+              : TasksSignOutState.error(
+                  tasks: state.tasks,
+                  currentQuery: state.currentQuery,
+                  hasMore: state.hasMore,
+                  isPaginating: state.isPaginating,
+                ),
         );
       },
     );
@@ -112,11 +133,19 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
             tasks: allTasks,
             hasMore: hasMore,
             isPaginating: false,
+            stateType: TasksStateType.success,
           ),
         );
       },
-      onError: (_) {
-        emit(currentState.copyWith(isPaginating: false));
+      onError: (error) {
+        emit(
+          currentState.copyWith(
+            isPaginating: false,
+            stateType: error is NetworkException
+                ? TasksStateType.networkError
+                : TasksStateType.genericError,
+          ),
+        );
       },
     );
   }

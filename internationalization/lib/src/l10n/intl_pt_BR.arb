@@ -12,6 +12,20 @@
   "common_name_title": "Nome",
   "common_name_empty_error": "Nome é obrigatório",
   "common_error_network": "Verifique sua conexão com a internet e tente novamente.",
+  "common_empty_title": "Lista Vazia",
+  "common_try_again": "Tentar Novamente",
+  "common_logout_title": "Sair",
+  "common_toggle_language": "Mudar idioma",
+  "common_toggle_theme": "Mudar Tema (atual: {currentThemeMode})",
+  "@common_toggle_theme": {
+    "description": "Button text to toggle theme with current theme mode",
+    "placeholders": {
+      "currentThemeMode": {
+        "type": "String",
+        "example": "Dark"
+      }
+    }
+  },
   "auth_sign_up_label": "Cadastre-se",
   "auth_sign_in_label": "Entrar",
   "auth_name": "nome",
@@ -64,6 +78,7 @@
   "tasks_create_with_error": "A tarefa foi criada com sucesso, porém houve erro no upload das mídias. Mas não se preocupe, você pode tentar inserir novamente editando a tarefa ;)",
   "tasks_current_media_title": "Mídias salvas",
   "tasks_new_media_title": "Novas mídias",
+  "tasks_empty_message": "Nenhuma tarefa encontrada. Clique no botão abaixo e adicione uma nova!",
   "categories_title": "Categorias",
   "categories_create_title": "Criar Categoria",
   "categories_edit_title": "Editar Categoria",

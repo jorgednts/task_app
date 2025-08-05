@@ -55,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       },
       onError: (error) {
-        emit(const AuthInitial(formType: AuthFormType.signIn));
+        emit(_getAuthState(error));
       },
     );
   }

@@ -8,7 +8,6 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/auth/auth_state.dart';
 import '../../constants/image_constants.dart';
 import '../../navigation/app_navigator.dart';
-import '../common/common_app_bar.dart';
 import '../common/global_builder.dart';
 import 'widgets/auth_form.dart';
 
@@ -50,9 +49,11 @@ class AuthPage extends StatelessWidget {
     return GlobalBuilder(
       builder: (state) {
         return Scaffold(
-          appBar: CommonAppBar(
-            appThemeMode: state.themeMode,
-            statusBarColor: backgroundColor,
+          appBar: AppBar(
+            elevation: 0,
+            toolbarHeight: 0,
+            scrolledUnderElevation: 0,
+            backgroundColor: backgroundColor,
           ),
           body: SafeArea(
             child: BlocListener<AuthBloc, AuthState>(

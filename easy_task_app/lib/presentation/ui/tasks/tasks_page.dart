@@ -12,10 +12,9 @@ import '../../bloc/tasks/tasks_event.dart';
 import '../../bloc/tasks/tasks_state.dart';
 import '../../navigation/app_navigator.dart';
 import '../../navigation/app_route.dart';
-import '../common/common_app_bar.dart';
-import '../common/common_top_menu.dart';
+import 'widgets/tasks_top_menu.dart';
 import '../common/global_builder.dart';
-import 'widgets/task_grid_view.dart';
+import 'widgets/tasks_list_result.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -50,13 +49,14 @@ class TasksPage extends StatelessWidget {
 
   void blocConsumerListener(BuildContext context, TasksState state) {
     final strings = AppIntl.of(context);
-    if (state.stateType == TasksStateType.networkError) {
+    if (state.stateType == TasksStateType.networkError && !state.isPaginating) {
       ScaffoldMessengerHandler.showErrorSnackBar(
         context,
         title: strings.common_error_title,
         message: strings.common_error_network,
       );
-    } else if (state.stateType == TasksStateType.genericError) {
+    } else if (state.stateType == TasksStateType.genericError &&
+        !state.isPaginating) {
       ScaffoldMessengerHandler.showErrorSnackBar(
         context,
         title: strings.common_error_title,
@@ -77,81 +77,76 @@ class TasksPage extends StatelessWidget {
     final strings = AppIntl.of(context);
     return GlobalBuilder(
       builder: (themeState) {
-        return ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: WidthResponsiveBreakpoints.large,
+        return Scaffold(
+          extendBodyBehindAppBar: false,
+          appBar: AppBar(
+            elevation: 0,
+            toolbarHeight: 0,
+            scrolledUnderElevation: 0,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
-          child: Scaffold(
-            appBar: CommonAppBar(
-              appThemeMode: themeState.themeMode,
-              statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            body: SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(Spacing.medium),
-                  child: BlocConsumer<TasksBloc, TasksState>(
-                    listener: blocConsumerListener,
-                    builder: (context, state) {
-                      return Stack(
-                        children: [
-                          Positioned.fill(
-                            child: Column(
-                              spacing: Spacing.medium,
-                              children: [
-                                CommonTopMenu(
-                                  username: user.name,
-                                  onLogoutPressed: () =>
-                                      context.read<TasksBloc>().add(
-                                        const SignOut(),
+          body: SafeArea(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(Spacing.medium),
+                child: BlocConsumer<TasksBloc, TasksState>(
+                  listener: blocConsumerListener,
+                  builder: (context, state) {
+                    return Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Column(
+                            spacing: Spacing.medium,
+                            children: [
+                              TasksTopMenu(
+                                username: user.name,
+                                onLogoutPressed: () =>
+                                    context.read<TasksBloc>().add(
+                                      const SignOut(),
+                                    ),
+                                onCategoriesPressed: () async {
+                                  final bloc = context.read<TasksBloc>();
+                                  await context.navigateToCategoriesPage();
+                                  bloc.add(
+                                    InitializeTasks(
+                                      filtersParams: GetTasksFiltersParams(
+                                        query: state.currentQuery,
                                       ),
-                                  onCategoriesPressed: () async {
-                                    final bloc = context.read<TasksBloc>();
-                                    await context.navigateToCategoriesPage();
-                                    bloc.add(
+                                    ),
+                                  );
+                                },
+                              ),
+                              CustomSearchTextField(
+                                label: strings.tasks_search_label,
+                                searchTooltip: strings.common_search_tooltip,
+                                clearTooltip: strings.common_clear_tooltip,
+                                onSearch: (filter) =>
+                                    context.read<TasksBloc>().add(
                                       InitializeTasks(
                                         filtersParams: GetTasksFiltersParams(
-                                          query: state.currentQuery,
+                                          query: filter,
                                         ),
                                       ),
-                                    );
-                                  },
-                                ),
-                                CustomSearchTextField(
-                                  label: strings.tasks_search_label,
-                                  searchTooltip: strings.common_search_tooltip,
-                                  clearTooltip: strings.common_clear_tooltip,
-                                  onSearch: (filter) =>
-                                      context.read<TasksBloc>().add(
-                                        InitializeTasks(
-                                          filtersParams: GetTasksFiltersParams(
-                                            query: filter,
-                                          ),
-                                        ),
-                                      ),
-                                  onClear: () => context.read<TasksBloc>().add(
-                                    const InitializeTasks(
-                                      filtersParams: GetTasksFiltersParams(),
                                     ),
+                                onClear: () => context.read<TasksBloc>().add(
+                                  const InitializeTasks(
+                                    filtersParams: GetTasksFiltersParams(),
                                   ),
                                 ),
-                                Expanded(
-                                  child:
-                                      state.stateType == TasksStateType.loading
-                                      ? const Center(
-                                          child: CircularProgressIndicator(),
-                                        )
-                                      : state is TasksListState
-                                      ? TaskGridView(
-                                          tasks: state.tasks,
-                                          onTap: (task) => onTapFAB(
-                                            context,
-                                            state,
-                                            task: task,
-                                          ),
-                                          isPaginating: state.isPaginating,
-                                          hasMore: state.hasMore,
-                                          onLoadMore: () {
+                              ),
+                              Expanded(
+                                child: state.stateType == TasksStateType.loading
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : TaskListResult(
+                                        state: state,
+                                        onTapItem: (task) => onTapFAB(
+                                          context,
+                                          state,
+                                          task: task,
+                                        ),
+                                        onLoadMore: () =>
                                             context.read<TasksBloc>().add(
                                               LoadMoreTasks(
                                                 filtersParams:
@@ -161,25 +156,31 @@ class TasksPage extends StatelessWidget {
                                                           state.tasks.length,
                                                     ),
                                               ),
-                                            );
-                                          },
-                                        )
-                                      : Container(),
-                                ),
-                              ],
-                            ),
+                                            ),
+                                        onRetryEmptyState: () =>
+                                            context.read<TasksBloc>().add(
+                                              InitializeTasks(
+                                                filtersParams:
+                                                    GetTasksFiltersParams(
+                                                      query: state.currentQuery,
+                                                    ),
+                                              ),
+                                            ),
+                                      ),
+                              ),
+                            ],
                           ),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: FloatingActionButton(
-                              onPressed: () => onTapFAB(context, state),
-                              child: const Icon(Icons.add),
-                            ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: FloatingActionButton(
+                            onPressed: () => onTapFAB(context, state),
+                            child: const Icon(Icons.add),
                           ),
-                        ],
-                      );
-                    },
-                  ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),

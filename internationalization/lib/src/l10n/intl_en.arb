@@ -12,6 +12,20 @@
   "common_name_title": "Name",
   "common_name_empty_error": "Name is required",
   "common_error_network": "Check your internet connection and try again.",
+  "common_empty_title": "Empty List",
+  "common_try_again": "Try Again",
+  "common_logout_title": "Logout",
+  "common_toggle_language": "Toggle language",
+  "common_toggle_theme": "Toggle Theme (current: {currentThemeMode})",
+  "@common_toggle_theme": {
+    "description": "Button text to toggle theme with current theme mode",
+    "placeholders": {
+      "currentThemeMode": {
+        "type": "String",
+        "example": "Dark"
+      }
+    }
+  },
   "auth_sign_up_label": "Sign Up",
   "auth_sign_in_label": "Sign In",
   "auth_name": "name",
@@ -65,6 +79,7 @@
   "tasks_create_with_error": "The task was created successfully, but there was an error uploading the media. But don't worry, you can try inserting it again by editing the task ;)",
   "tasks_current_media_title": "Saved media",
   "tasks_new_media_title": "New media",
+  "tasks_empty_message": "No tasks found. Click the button below and add a new one!",
   "categories_title": "Categories",
   "categories_create_title": "Create Category",
   "categories_edit_title": "Edit Category",

@@ -47,9 +47,8 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       },
       onError: (error) {
         emit(
-          CategoryErrorState(
+          CategoriesListErrorState(
             categories: state.categories,
-            exception: error,
           ),
         );
       },
