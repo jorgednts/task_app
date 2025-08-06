@@ -1,17 +1,17 @@
 core:
-  - core/lib/**/*
+  - any: [ 'core/lib/**/*' ]
 
 design_system:
-  - design_system/lib/**/*
+  - any: [ 'design_system/lib/**/*' ]
 
 easy_task_app:
-  - easy_task_app/lib/**/*
+  - -any: [ 'easy_task_app/lib/**/*' ]
 
 internationalization:
-  - internationalization/lib/**/*
+  - any: [ 'internationalization/lib/**/*' ]
 
 CI/CD:
-  - .github/workflows/**/*
+  - any: [ '.github/workflows/**/*' ]
 
 docs:
-  - README.md
+  - any: [ '- README.md' ]
