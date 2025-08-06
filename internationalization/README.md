@@ -1,11 +1,9 @@
-# internationalization
+# 🌐 Internationalization
 
-A new Flutter module project.
+This package handles the localization (i18n) support for the Easy Task App, enabling the app to support multiple languages using the `intl` package and ARB files.
 
-## Getting Started
+Currently, it supports:
+- 🇺🇸 English (`en`) (default)
+- 🇧🇷 Brazilian Portuguese (`pt_BR`)
 
-For help getting started with Flutter development, view the online
-[documentation](https://flutter.dev/).
-
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/to/add-to-app).
+---

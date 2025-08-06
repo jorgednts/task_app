@@ -1,11 +1,17 @@
-# core
+# 📦 Core Module
 
-A new Flutter module project.
+This package contains core utilities, abstractions, and services used throughout the Easy Task App.
 
-## Getting Started
+It is designed to follow clean architecture principles, ensuring separation of concerns and reusability across different layers of the app.
 
-For help getting started with Flutter development, view the online
-[documentation](https://flutter.dev/).
+---
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/to/add-to-app).
+## 🧩 Highlights
+
+- `BaseRepository`, `BaseUseCase`: Abstractions for domain logic
+- `MediaController`: Interface to handle media interactions
+- `LoggerService`: Abstract and concrete logging implementations
+- `NetworkService`: Abstraction over network requests
+- `Result<T>`: Functional-style wrapper for operation results
+- 
+---
