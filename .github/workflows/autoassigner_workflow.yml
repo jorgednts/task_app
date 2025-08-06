@@ -2,12 +2,13 @@ name: Auto Assigner
 on: [pull_request]
 
 jobs:
-  label:
+  autoassign:
 
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
+      issues: write
 
     steps:
       - uses: toshimaru/auto-author-assign@v2.1.1
