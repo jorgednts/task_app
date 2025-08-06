@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'easy_task_category_model.dart';
 import 'easy_task_media_item_model.dart';
 import 'task_status.dart';
-import 'dart:convert';
 
 class EasyTaskModel extends Equatable {
   const EasyTaskModel({
