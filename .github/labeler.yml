@@ -5,7 +5,7 @@ design_system:
   - any: [ 'design_system/lib/**/*' ]
 
 easy_task_app:
-  - -any: [ 'easy_task_app/lib/**/*' ]
+  - any: [ 'easy_task_app/lib/**/*' ]
 
 internationalization:
   - any: [ 'internationalization/lib/**/*' ]
