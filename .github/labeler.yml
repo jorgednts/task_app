@@ -10,6 +10,7 @@ easy_task_app:
 internationalization:
   - any: ['internationalization/lib/**/*']
 
+
 CI/CD:
   - any: ['.github/workflows/**/*']
 
