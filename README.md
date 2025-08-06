@@ -1,6 +1,15 @@
 # Easy Task App (`task_app`) – Tekna.Rocks Technical Challenge
 
 A simple and functional task management mobile application built with Flutter and Supabase, featuring user authentication, CRUD operations for tasks and categories, and media attachments.
+## 📸 Screenshots
+
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_1.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_7.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_2.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_3.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_4.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_5.png">
+  <img height="700" src="easy_task_app/assets/screenshots/mobile_6.png">
 
 ## 🚀 Features
 
