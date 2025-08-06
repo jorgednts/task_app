@@ -1,10 +1,10 @@
 name: easy_task_app
 
 packages:
-  - easy_task_app
   - core
   - design_system
   - internationalization
+  - easy_task_app
 
 command:
   bootstrap:
